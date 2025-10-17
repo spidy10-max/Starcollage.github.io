@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FA Part 2 - Arts - کتابیں اور مضامین</title>
+    <style>
+        :root {
+            --bg: #f0f9ff;
+            --card: #ffffff;
+            --accent: #3b82f6;
+            --muted: #6b7280;
+            --success: #10b981;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: "Segoe UI", "Nafees", "Jameel Noori Nastaleeq", Tahoma, sans-serif;
+            background: var(--bg);
+            color: #222;
+            direction: rtl;
+        }
+        
+        .container {
+            max-width: 980px;
+            margin: 28px auto;
+            padding: 18px;
+        }
+        
+        header {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            align-items: center;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        
+        h1 {
+            margin: 0;
+            color: var(--accent);
+            font-size: 2.2rem;
+        }
+        
+        p.lead {
+            margin: 0;
+            color: var(--muted);
+            text-align: center;
+            font-size: 1.1rem;
+            max-width: 600px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 18px;
+            margin-top: 18px;
+        }
+        
+        @media (max-width: 880px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .card {
+            background: var(--card);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(10, 20, 50, 0.06);
+        }
+        
+        h2 {
+            margin-top: 0;
+            color: var(--accent);
+            border-bottom: 2px solid #f0f7ff;
+            padding-bottom: 8px;
+        }
+        
+        ul.clean {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        ul.clean li {
+            background: #f0f7ff;
+            padding: 8px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            font-weight: 500;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: 0;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+        
+        .btn-primary:hover {
+            background: #2563eb;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #dbeafe;
+            color: var(--accent);
+        }
+        
+        .btn-outline:hover {
+            background: #f0f7ff;
+        }
+        
+        .books {
+            margin-top: 20px;
+        }
+        
+        .book-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            border-radius: 8px;
+            background: #fff;
+            margin-bottom: 12px;
+            border: 1px solid #f0f7ff;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .book-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+        }
+        
+        .meta {
+            font-size: 0.95em;
+            color: var(--muted);
+        }
+        
+        .small {
+            font-size: 0.95em;
+            color: var(--muted);
+        }
+        
+        .subject-section {
+            margin-bottom: 24px;
+        }
+        
+        .subject-section h3 {
+            color: var(--accent);
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #f0f7ff;
+        }
+        
+        .info-box {
+            background: #f0f9ff;
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .info-box h3 {
+            margin-top: 0;
+            color: var(--accent);
+        }
+        
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .info-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e0f2fe;
+        }
+        
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .highlight {
+            background: #f0f7ff;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin: 16px 0;
+            border-left: 4px solid var(--success);
+        }
+        
+        /* Modal Styles */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 10, 30, 0.55);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 60;
+        }
+        
+        .modal {
+            width: 100%;
+            max-width: 900px;
+            height: 80vh;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .modal header {
+            padding: 12px 16px;
+            background: #f0f9ff;
+            border-bottom: 1px solid #e0f2fe;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0;
+        }
+        
+        .modal iframe {
+            border: 0;
+            flex: 1;
+        }
+        
+        .close-btn {
+            background: transparent;
+            border: 0;
+            font-size: 18px;
+            cursor: pointer;
+            color: #444;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        
+        .close-btn:hover {
+            background: #f0f0f0;
+        }
+        
+        .note {
+            font-size: 0.92em;
+            color: #444;
+            margin-top: 10px;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+        }
+        
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: var(--muted);
+            font-weight: 600;
+            padding-top: 16px;
+            border-top: 1px solid #f0f7ff;
+        }
+        
+        .arts-badge {
+            background: var(--accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+        
+        .part2-badge {
+            background: #10b981;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>FA Part 2 - Arts <span class="arts-badge">آرٹس گروپ</span></h1>
+            <p class="lead">DG Khan بورڈ کے مطابق مضامین اور کتابیں — View اور Download اختیارات کے ساتھ</p>
+        </header>
+
+        <div class="grid">
+            <!-- Main column -->
+            <div class="card">
+                <h2>مضامین (آرٹس گروپ) <span class="part2-badge">Part 2</span></h2>
+                <ul class="clean">
+                    <li>اردو</li>
+                    <li>انگریزی</li>
+                    <li>ترجمہ قرآن</li>
+                    <li>پاکستان اسٹڈیز</li>
+                    <li>معاشیات</li>
+                    <li>نفسیات</li>
+                    <li>فلسفہ</li>
+                    <li>تعلیم</li>
+                </ul>
+
+                <section style="margin-top: 24px">
+                    <h2>کتابیں <span class="part2-badge">Part 2</span></h2>
+                    <p class="note">View بٹن modal میں PDF کھولے گا؛ Download بٹن سیدھا فائل ڈاؤنلوڈ کرے گا۔</p>
+
+                    <div class="subject-section">
+                        <h3>اردو</h3>
+                        <div class="book-item">
+                            <div><strong>اردو — Part II (آرٹس گروپ)</strong><div class="meta small">Google Drive</div></div>
+                            <div>
+                                <button class="btn btn-outline view-book" data-title="اردو — Part II" data-url="https://drive.google.com/file/d/11xFErLIzGIuQgZDShaBLbpkoE2cQxNjz/preview">View</button>
+                                <a class="btn btn-primary" href="https://drive.google.com/uc?export=download&id=11xFErLIzGIuQgZDShaBLbpkoE2cQxNjz" target="_blank">Download</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subject-section">
+                        <h3>انگریزی</h3>
+                        <div class="book-item">
+                            <div><strong>English — Part II (آرٹس گروپ)</strong><div class="meta small">Google Drive</div></div>
+                            <div>
+                                <button class="btn btn-outline view-book" data-title="English — Part II" data-url="https://drive.google.com/file/d/1Nm-dlT0jwgFSVKaKJ6wuGGkj_naMKfsQ/preview">View</button>
+                                <a class="btn btn-primary" href="https://drive.google.com/uc?export=download&id=1Nm-dlT0jwgFSVKaKJ6wuGGkj_naMKfsQ" target="_blank">Download</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subject-section">
+                        <h3>ترجمہ قرآن</h3>
+                        <div class="book-item">
+                            <div><strong>ترجمہ قرآن (آرٹس گروپ)</strong><div class="meta small">Google Drive</div></div>
+                            <div>
+                                <button class="btn btn-outline view-book" data-title="ترجمہ قرآن" data-url="https://drive.google.com/file/d/1p3SUuTOCLqAIOEGbSJdmjDlp7KHIO_0f/preview">View</button>
+                                <a class="btn btn-primary" href="https://drive.google.com/uc?export=download&id=1p3SUuTOCLqAIOEGbSJdmjDlp7KHIO_0f" target="_blank">Download</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subject-section">
+                        <h3>پاکستان اسٹڈیز</h3>
+                        <div class="book-item">
+                            <div><strong>Pakistan Studies — Part II (آرٹس گروپ)</strong><div class="meta small">Google Drive</div></div>
+                            <div>
+                                <button class="btn btn-outline view-book" data-title="Pakistan Studies — Part II" data-url="https://drive.google.com/file/d/1p3SUuTOCLqAIOEGbSJdmjDlp7KHIO_0f/preview">View</button>
+                                <a class="btn btn-primary" href="https://drive.google.com/uc?export=download&id=1p3SUuTOCLqAIOEGbSJdmjDlp7KHIO_0f" target="_blank">Download</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subject-section">
+                        <h3>معاشیات</h3>
+                        <div class="book-item">
+                            <div><strong>معاشیات — Part II (آرٹس گروپ)</strong><div class="meta small">Google Drive</div></div>
+                            <div>
+                                <button class="btn btn-outline view-book" data-title="معاشیات — Part II" data-url="https://drive.google.com/file/d/1hpdlUNGLZn6LPFIawwUlB3apxin2P6EU/preview">View</button>
+                                <a class="btn btn-primary" href="https://drive.google.com/uc?export=download&id=1hpdlUNGLZn6LPFIawwUlB3apxin2P6EU" target="_blank">Download</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subject-section">
+                        <h3>نفسیات</h3>
+                        <div class="book-item">
+                            <div><strong>نفسیات — Part II (آرٹس گروپ)</strong><div class="meta small">Google Drive</div></div>
+                            <div>
+                                <button class="btn btn-outline view-book" data-title="نفسیات — Part II" data-url="https://drive.google.com/file/d/18jeujdyMCpyiyVSwI_8F63TUeXXcuQ7t/preview">View</button>
+                                <a class="btn btn-primary" href="https://drive.google.com/uc?export=download&id=18jeujdyMCpyiyVSwI_8F63TUeXXcuQ7t" target="_blank">Download</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subject-section">
+                        <h3>فلسفہ</h3>
+                        <div class="book-item">
+                            <div><strong>فلسفہ — Part II (آرٹس گروپ)</strong><div class="meta small">Google Drive</div></div>
+                            <div>
+                                <button class="btn btn-outline view-book" data-title="فلسفہ — Part II" data-url="https://drive.google.com/file/d/1ZRZtic47vymASUoqb6FUZ_R5L12oXObW/preview">View</button>
+                                <a class="btn btn-primary" href="https://drive.google.com/uc?export=download&id=1ZRZtic47vymASUoqb6FUZ_R5L12oXObW" target="_blank">Download</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subject-section">
+                        <h3>تعلیم</h3>
+                        <div class="book-item">
+                            <div><strong>تعلیم — Part II (آرٹس گروپ)</strong><div class="meta small">Google Drive</div></div>
+                            <div>
+                                <button class="btn btn-outline view-book" data-title="تعلیم — Part II" data-url="https://drive.google.com/file/d/1ZRZtic47vymASUoqb6FUZ_R5L12oXObW/preview">View</button>
+                                <a class="btn btn-primary" href="https://drive.google.com/uc?export=download&id=1ZRZtic47vymASUoqb6FUZ_R5L12oXObW" target="_blank">Download</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right column -->
+            <aside>
+                <div class="card">
+                    <h2>مفید معلومات <span class="part2-badge">Part 2</span></h2>
+                    
+                    <div class="info-box">
+                        <h3>FA Part 2 آرٹس گروپ</h3>
+                        <ul class="info-list">
+                            <li>آرٹس گروپ میں کل 8 مضامین ہیں</li>
+                            <li>تمام مضامین لازمی ہیں</li>
+                            <li>سالانہ امتحان: مارچ 2025</li>
+                            <li>پرائیویٹ امیدواروں کی رجسٹریشن: دسمبر 2024</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h3>اہم ہدایات</h3>
+                        <ul class="info-list">
+                            <li>تمام کتابیں Google Drive پر دستیاب ہیں</li>
+                            <li>View آپشن سے کتاب آن لائن دیکھی جا سکتی ہے</li>
+                            <li>Download آپشن سے کتاب ڈاؤنلوڈ کی جا سکتی ہے</li>
+                            <li>کتابیں PDF فارمیٹ میں ہیں</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="highlight">
+                        <strong>نوٹ:</strong> تمام کتابیں DG Khan بورڈ کے نصاب کے مطابق ہیں۔ کسی بھی مسئلے کے لیے بورڈ آفس سے رابطہ کریں۔
+                    </div>
+                    
+                    <div class="footer">
+                        مزید معلومات: 0318-0198933
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true" aria-label="View Book">
+            <header>
+                <div id="modalTitle">کتاب</div>
+                <button class="close-btn" id="closeModal">✕</button>
+            </header>
+            <iframe id="bookFrame" src="" title="Book viewer"></iframe>
+        </div>
+    </div>
+
+    <script>
+        const viewBtns = document.querySelectorAll('.view-book');
+        const modal = document.getElementById('modalBackdrop');
+        const frame = document.getElementById('bookFrame');
+        const modalTitle = document.getElementById('modalTitle');
+        const closeBtn = document.getElementById('closeModal');
+
+        viewBtns.forEach(b => {
+            b.addEventListener('click', () => {
+                const url = b.getAttribute('data-url') || '';
+                const title = b.getAttribute('data-title') || 'کتاب';
+                if(!url) { 
+                    alert('کتاب کا لنک دستیاب نہیں ہے۔'); 
+                    return; 
+                }
+                modalTitle.textContent = title;
+                frame.src = url;
+                modal.style.display = 'flex';
+                modal.setAttribute('aria-hidden','false');
+            });
+        });
+
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => { 
+            if(e.target === modal) closeModal(); 
+        });
+        
+        function closeModal() {
+            frame.src = '';
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden','true');
+        }
+    </script>
+</body>
+</html>

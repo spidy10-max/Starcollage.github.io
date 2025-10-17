@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Apply — Star Group of Colleges</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f9ff;
+      --card: #fff;
+      --accent1: #0b72ff;
+      --accent2: #6c5cff;
+      --muted: #6b7280;
+      --error: #e53e3e;
+      --success: #38a169;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: "Inter", "Noto Sans Arabic", system-ui, Arial;
+      background: linear-gradient(180deg, var(--bg), #eef6ff);
+      color: #07162a;
+    }
+    .wrap {
+      max-width: 900px;
+      margin: 18px auto;
+      padding: 20px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+    }
+    .logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 14px;
+      background: var(--gradient);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 800;
+      font-size: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+    .logo:hover {
+      transform: rotate(5deg) scale(1.05);
+    }
+    .lang-switch {
+      display: flex;
+      gap: 8px;
+    }
+    .lang-btn {
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(7, 32, 62, 0.06);
+      cursor: pointer;
+      background: #fff;
+      font-weight: 700;
+    }
+    .lang-btn.active {
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      color: #fff;
+      border: 0;
+    }
+    .card {
+      background: var(--card);
+      padding: 18px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(2, 6, 23, 0.06);
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: 600;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #e6eefb;
+      margin-top: 6px;
+      font-family: inherit;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent1);
+      box-shadow: 0 0 0 3px rgba(11, 114, 255, 0.1);
+    }
+    button.primary {
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 0;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    button.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(11, 114, 255, 0.3);
+    }
+    button.primary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    .muted {
+      color: var(--muted);
+    }
+    footer {
+      margin-top: 18px;
+      text-align: center;
+      color: var(--muted);
+    }
+    .rtl {
+      direction: rtl;
+    }
+    .message {
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 16px;
+      text-align: center;
+    }
+    .message.success {
+      background-color: rgba(56, 161, 105, 0.1);
+      color: var(--success);
+      border: 1px solid var(--success);
+    }
+    .message.error {
+      background-color: rgba(229, 62, 62, 0.1);
+      color: var(--error);
+      border: 1px solid var(--error);
+    }
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+      margin-right: 8px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .radio-group {
+      display: flex;
+      gap: 16px;
+      margin-top: 6px;
+    }
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .radio-option input {
+      width: auto;
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div style="display:flex;gap:12px;align-items:center">
+        <a href="#" class="logo">
+          <img src="https://scontent.fmux3-1.fna.fbcdn.net/v/t39.30808-6/555899704_654495634383093_3203885526133639429_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeECJcL9B5A3MGH6o8eevEwjLXAmRu3pFK0tcCZG7ekUrZTWoC0yQhCVptoKG4DZuP-fP43En3XxPKC1oI3MJ2ok&_nc_ohc=7m56WcthycwQ7kNvwGN9T5m&_nc_oc=AdnnohXxV-YZOkt1olvAUf4By6vpn7p77b16mwXjJZ8Th37mFgeu6nRA6jEY8di5AMs&_nc_zt=23&_nc_ht=scontent.fmux3-1.fna&_nc_gid=zOogVPUkbt4lx3LJ87LL7Q&oh=00_Afe9uC9djfDMspQxYOw_GsvDSsjpC91_DLYeG71gSkc4BQ&oe=68F1896E" alt="Star Group of Colleges Logo">
+        </a>
+        <div>
+          <div id="siteTitle" data-en="Star Group of Colleges" data-ur="سٹار گروپ آف کالجز">Star Group of Colleges</div>
+          <div class="muted" id="siteTag" data-en="Application Portal" data-ur="درخواست پورٹل">Application Portal</div>
+        </div>
+      </div>
+      <div class="lang-switch">
+        <button class="lang-btn active" id="btnEn">EN</button>
+        <button class="lang-btn" id="btnUr">UR</button>
+      </div>
+    </header>
+
+    <main class="card" id="applyCard">
+      <h2 id="pageTitle" data-en="Apply for Admission" data-ur="داخلے کے لیے درخواست دیں">Apply for Admission</h2>
+      <p id="intro" data-en="Fill this form. We'll contact you shortly." data-ur="یہ فارم پُر کریں۔ ہم جلد آپ سے رابطہ کریں گے۔">Fill this form. We'll contact you shortly.</p>
+
+      <form id="applicationForm" novalidate>
+        <div class="form-group">
+          <label for="name" data-en="Full name" data-ur="پورا نام">Full name</label>
+          <input id="name" name="name" type="text" placeholder="Your full name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email" data-en="Email" data-ur="ای میل">Email</label>
+          <input id="email" name="email" type="email" placeholder="example@mail.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone" data-en="Phone" data-ur="فون نمبر">Phone</label>
+          <input id="phone" name="phone" type="tel" placeholder="+92 3xx xxxxxxx" required>
+        </div>
+
+        <div class="form-group">
+          <label data-en="Gender" data-ur="جنس">Gender</label>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input type="radio" id="male" name="gender" value="Male" required>
+              <label for="male" data-en="Male" data-ur="مرد">Male</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="female" name="gender" value="Female" required>
+              <label for="female" data-en="Female" data-ur="عورت">Female</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="program" data-en="Select Program" data-ur="پروگرام منتخب کریں">Select Program</label>
+          <select id="program" name="program" required>
+            <optgroup label="ICS">
+              <option value="ICS Part 1" data-en="ICS — Part 1" data-ur="ICS — پارٹ ۱">ICS — Part 1</option>
+              <option value="ICS Part 2" data-en="ICS — Part 2" data-ur="ICS — پارٹ ۲">ICS — Part 2</option>
+            </optgroup>
+            <optgroup label="FSc — Pre-Med">
+              <option value="FSc Pre-Med Part 1" data-en="FSc Pre-Med — Part 1" data-ur="FSc پری میڈ — پارٹ ۱">FSc Pre-Med — Part 1</option>
+              <option value="FSc Pre-Med Part 2" data-en="FSc Pre-Med — Part 2" data-ur="FSc پری میڈ — پارٹ ۲">FSc Pre-Med — Part 2</option>
+            </optgroup>
+            <optgroup label="FA">
+              <option value="FA General Part 1" data-en="FA General — Part 1" data-ur="FA جنرل — پارٹ ۱">FA General — Part 1</option>
+              <option value="FA (IT) Part 1" data-en="FA (IT) — Part 1" data-ur="FA (IT) — پارٹ ۱">FA (IT) — Part 1</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label data-en="Need Transport?" data-ur="ٹرانسپورٹ کی ضرورت ہے؟">Need Transport?</label>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input type="radio" id="transport-yes" name="transport" value="Yes" required>
+              <label for="transport-yes" data-en="Yes" data-ur="ہاں">Yes</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="transport-no" name="transport" value="No" required>
+              <label for="transport-no" data-en="No" data-ur="نہیں">No</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="remarks" data-en="Remarks (optional)" data-ur="مزید معلومات (اختیاری)">Remarks (optional)</label>
+          <textarea id="remarks" name="remarks" rows="4" placeholder="Any notes..."></textarea>
+        </div>
+
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="primary" type="submit" id="submitBtn">
+            <span id="submitText">Submit Application</span>
+            <span id="submitSpinner" class="spinner" style="display:none"></span>
+          </button>
+          <button type="button" onclick="document.getElementById('applicationForm').reset()" style="padding:10px;border-radius:8px">Reset</button>
+        </div>
+      </form>
+
+      <div id="messageContainer" style="margin-top:12px" aria-live="polite"></div>
+    </main>
+
+    <footer>© Powered by Rana Kashan <span id="org" data-en="" data-ur="سٹار گروپ آف کالجز"></span> — <span class="muted">0342-7120660</span></footer>
+  </div>
+
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  
+  <script>
+    // EmailJS Initialization with CORRECT PUBLIC KEY
+    (function() {
+      emailjs.init("e30lBNw14n_gDIzB1"); // ✅ Your correct public key
+    })();
+
+    // Language switching functionality
+    (function() {
+      const btnEn = document.getElementById('btnEn');
+      const btnUr = document.getElementById('btnUr');
+      let lang = localStorage.getItem('site-lang') || 'en';
+      
+      function apply(l) {
+        lang = l;
+        localStorage.setItem('site-lang', lang);
+        
+        // Update active button
+        btnEn.classList.toggle('active', l === 'en');
+        btnUr.classList.toggle('active', l === 'ur');
+        
+        // Update text content
+        document.querySelectorAll('[data-en]').forEach(el => {
+          el.textContent = el.getAttribute(`data-${l}`);
+        });
+        
+        // Update direction
+        document.body.classList.toggle('rtl', l === 'ur');
+        
+        // Update placeholders
+        const name = document.getElementById('name');
+        if (name) name.placeholder = (l === 'en') ? 'Your full name' : 'اپنا پورا نام لکھیں';
+        
+        const email = document.getElementById('email');
+        if (email) email.placeholder = 'example@mail.com';
+        
+        const phone = document.getElementById('phone');
+        if (phone) phone.placeholder = (l === 'en') ? '+92 3xx xxxxxxx' : '+92 3xx xxxxxxx';
+        
+        const remarks = document.getElementById('remarks');
+        if (remarks) remarks.placeholder = (l === 'en') ? 'Any notes...' : 'کوئی نوٹس...';
+        
+        // Update submit button text
+        const submitText = document.getElementById('submitText');
+        if (submitText) {
+          submitText.textContent = (l === 'en') ? 'Submit Application' : 'درخواست جمع کریں';
+        }
+      }
+
+      btnEn.addEventListener('click', () => apply('en'));
+      btnUr.addEventListener('click', () => apply('ur'));
+      apply(lang);
+    })();
+
+    // Form handling with EmailJS - FIXED VERSION
+    (function() {
+      const form = document.getElementById('applicationForm');
+      const messageContainer = document.getElementById('messageContainer');
+      const submitBtn = document.getElementById('submitBtn');
+      
+      if (!form) return;
+      
+      // Function to show message
+      function showMessage(message, type) {
+        if (messageContainer) {
+          messageContainer.innerHTML = `<div class="message ${type}">${message}</div>`;
+          
+          // Auto-hide success messages after 5 seconds
+          if (type === 'success') {
+            setTimeout(() => {
+              messageContainer.innerHTML = '';
+            }, 5000);
+          }
+        }
+      }
+      
+      // Function to set loading state - FIXED
+      function setLoading(isLoading) {
+        if (!submitBtn) return;
+        
+        const submitText = document.getElementById('submitText');
+        const submitSpinner = document.getElementById('submitSpinner');
+        
+        if (isLoading) {
+          submitBtn.disabled = true;
+          if (submitText) {
+            const lang = localStorage.getItem('site-lang') || 'en';
+            submitText.textContent = (lang === 'ur') ? 'جمع کر رہا ہے...' : 'Submitting...';
+          }
+          if (submitSpinner) {
+            submitSpinner.style.display = 'inline-block';
+          }
+        } else {
+          submitBtn.disabled = false;
+          if (submitText) {
+            const lang = localStorage.getItem('site-lang') || 'en';
+            submitText.textContent = (lang === 'ur') ? 'درخواست جمع کریں' : 'Submit Application';
+          }
+          if (submitSpinner) {
+            submitSpinner.style.display = 'none';
+          }
+        }
+      }
+      
+      // Function to get selected radio value
+      function getSelectedRadioValue(name) {
+        const selected = document.querySelector(`input[name="${name}"]:checked`);
+        return selected ? selected.value : null;
+      }
+      
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const lang = localStorage.getItem('site-lang') || 'en';
+        const name = document.getElementById('name')?.value.trim() || '';
+        const email = document.getElementById('email')?.value.trim() || '';
+        const phone = document.getElementById('phone')?.value.trim() || '';
+        const gender = getSelectedRadioValue('gender');
+        const program = document.getElementById('program')?.value || '';
+        const transport = getSelectedRadioValue('transport');
+        const remarks = document.getElementById('remarks')?.value.trim() || '';
+        
+        // Validation
+        if (!name || !email || !phone || !gender || !transport) {
+          showMessage(
+            lang === 'ur' ? 'براہِ کرم لازمی فیلڈز پُر کریں' : 'Please fill required fields',
+            'error'
+          );
+          return;
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          showMessage(
+            lang === 'ur' ? 'براہِ کرم درست ای میل پتہ درج کریں' : 'Please enter a valid email address',
+            'error'
+          );
+          return;
+        }
+        
+        // Phone validation (basic)
+        if (phone.length < 10) {
+          showMessage(
+            lang === 'ur' ? 'براہِ کرم درست فون نمبر درج کریں' : 'Please enter a valid phone number',
+            'error'
+          );
+          return;
+        }
+        
+        // Set loading state
+        setLoading(true);
+        
+        try {
+          // Prepare template parameters
+          const templateParams = {
+            to_name: 'Star Group Admin',
+            from_name: name,
+            from_email: email,
+            phone: phone,
+            gender: gender,
+            program: program,
+            transport: transport,
+            remarks: remarks || 'No remarks provided',
+            timestamp: new Date().toLocaleString(),
+            to_email: 'kashanking925@gmail.com'  // TEST EMAIL
+          };
+          
+          console.log('Sending email with params:', templateParams);
+          
+          // Send email using EmailJS with ALL CORRECT CREDENTIALS
+          const response = await emailjs.send(
+            'service_2ycf12k',    // Your Service ID
+            'template_vsed83k',   // Your Template ID
+            templateParams
+          );
+          
+          console.log('EmailJS response:', response);
+          
+          // Success
+          showMessage(
+            lang === 'ur' ? 'آپ کی درخواست موصول ہو گئی ہے۔ ہم جلد رابطہ کریں گے۔' : 'Your application has been received. We will contact you soon.',
+            'success'
+          );
+          form.reset();
+          
+        } catch (error) {
+          console.error('EmailJS error:', error);
+          showMessage(
+            lang === 'ur' ? 'ارسال میں مسئلہ آیا، دوبارہ کوشش کریں۔' : 'Submission failed. Please try again.',
+            'error'
+          );
+        } finally {
+          setLoading(false);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

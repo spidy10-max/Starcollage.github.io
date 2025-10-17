@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>FA Program - Star Group of Colleges (DG Khan Board)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #f8fbff;
+            --card: #ffffff;
+            --accent1: #2563eb;
+            --accent2: #7c3aed;
+            --accent3: #06b6d4;
+            --muted: #64748b;
+            --text: #0f172a;
+            --gradient: linear-gradient(135deg, var(--accent1), var(--accent2));
+            --shadow-sm: 0 2px 12px rgba(15, 23, 42, 0.04);
+            --shadow-md: 0 8px 30px rgba(15, 23, 42, 0.08);
+            --shadow-lg: 0 20px 60px rgba(15, 23, 42, 0.12);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        html, body {
+            height: 100%;
+            font-family: "Inter", "Noto Sans Arabic", system-ui, sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            color: var(--text);
+            scroll-behavior: smooth;
+        }
+
+        .wrap {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+  .logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+    background: var(--gradient);
+    display: grid;
+    place-items: center;
+    color: white;
+    font-weight: 800;
+    font-size: 20px;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    /* Add these for image logo */
+    overflow: hidden;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+.logo:hover {
+    transform: rotate(5deg) scale(1.05);
+}
+
+        .site-meta .title {
+            font-weight: 800;
+            font-size: 22px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .site-meta .tag {
+            font-size: 14px;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        nav {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        nav a {
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--text);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0.1;
+            transition: left 0.3s ease;
+        }
+
+        nav a:hover::before {
+            left: 0;
+        }
+
+        nav a:hover {
+            color: var(--accent1);
+            transform: translateY(-2px);
+        }
+
+        .right-controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .lang-btn {
+            padding: 10px 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(100, 116, 139, 0.2);
+            background: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .lang-btn.active {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+            transform: scale(1.05);
+        }
+
+        .cta {
+            padding: 12px 24px;
+            border-radius: 12px;
+            background: var(--gradient);
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+        }
+
+        .cta:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* FA Hero Section */
+        .fa-hero {
+            text-align: center;
+            padding: 80px 0 40px;
+        }
+
+        .program-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .fa-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .fa-subtitle {
+            font-size: 1.3rem;
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        /* Board Info Section */
+        .board-info {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+        }
+
+        .board-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .board-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .board-description {
+            color: var(--muted);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Part Selection Section */
+        .part-selection-section {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .part-selection-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .part-selection-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        .part-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-decoration: none;
+            color: var(--text);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(100, 116, 139, 0.1);
+            text-align: center;
+        }
+
+        .part-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .part-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .part-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: grid;
+            place-items: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+            transition: var(--transition);
+        }
+
+        .part1-card .part-icon {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+
+        .part2-card .part-icon {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+        }
+
+        .part-card:hover .part-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .part-card-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .part-card-description {
+            color: var(--muted);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .subjects-list {
+            text-align: left;
+            margin: 25px 0;
+            background: rgba(100, 116, 139, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .subjects-list h4 {
+            margin-bottom: 15px;
+            color: var(--accent1);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .subjects-list h4 i {
+            font-size: 1.2rem;
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .subject-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+        }
+
+        .subject-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            background: var(--gradient);
+            display: grid;
+            place-items: center;
+            color: white;
+            font-size: 0.8rem;
+        }
+
+        .subject-name {
+            font-weight: 500;
+        }
+
+        .part-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .feature-tag {
+            background: rgba(100, 116, 139, 0.1);
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .part-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            color: var(--accent1);
+            transition: var(--transition);
+            padding: 12px 24px;
+            border-radius: 12px;
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        .part-card:hover .part-cta {
+            gap: 15px;
+            color: white;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .part-gradient {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .part-card:hover .part-gradient {
+            transform: scaleX(1);
+        }
+
+        /* FA Details Section */
+        .fa-details {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .detail-card {
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .detail-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            display: grid;
+            place-items: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .detail-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        /* Career Opportunities */
+        .career-section {
+            padding: 60px 0;
+        }
+
+        .career-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .career-item {
+            background: white;
+            padding: 20px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .career-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .career-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            display: grid;
+            place-items: center;
+            color: white;
+            font-size: 1.2rem;
+            margin: 0 auto 15px;
+        }
+
+        /* CTA Section */
+        .fa-cta {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .fa-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .fa-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn-white {
+            background: white;
+            color: #dc2626;
+            padding: 14px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: var(--muted);
+            border-top: 1px solid rgba(100, 116, 139, 0.1);
+        }
+
+        .rtl { direction: rtl; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .fa-title {
+                font-size: 2.5rem;
+            }
+            
+            .part-selection-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Page-specific styles for Part 1 and Part 2 pages */
+        .page-header {
+            text-align: center;
+            padding: 40px 0 20px;
+        }
+
+        .page-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .subject-details {
+            margin: 40px 0;
+        }
+
+        .subject-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .subject-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .subject-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .subject-icon-large {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            display: grid;
+            place-items: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .subject-name-large {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .subject-description {
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .topics-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .topic-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+        }
+
+        .topic-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            display: grid;
+            place-items: center;
+            color: white;
+            font-size: 0.7rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent1);
+            text-decoration: none;
+            font-weight: 600;
+            margin: 30px 0;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            gap: 15px;
+            color: var(--accent2);
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+
+    <!-- Header -->
+    <header>
+        <div class="brand">
+                 <a href="#" class="logo">
+    <img src="https://scontent.fmux3-1.fna.fbcdn.net/v/t39.30808-6/555899704_654495634383093_3203885526133639429_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeECJcL9B5A3MGH6o8eevEwjLXAmRu3pFK0tcCZG7ekUrZTWoC0yQhCVptoKG4DZuP-fP43En3XxPKC1oI3MJ2ok&_nc_ohc=7m56WcthycwQ7kNvwGN9T5m&_nc_oc=AdnnohXxV-YZOkt1olvAUf4By6vpn7p77b16mwXjJZ8Th37mFgeu6nRA6jEY8di5AMs&_nc_zt=23&_nc_ht=scontent.fmux3-1.fna&_nc_gid=zOogVPUkbt4lx3LJ87LL7Q&oh=00_Afe9uC9djfDMspQxYOw_GsvDSsjpC91_DLYeG71gSkc4BQ&oe=68F1896E" alt="Your Website Logo">
+</a>
+            <div class="site-meta">
+                <div class="title" id="siteTitle" data-en="Star Group of Colleges" data-ur="سٹار گروپ آف کالجز">Star Group of Colleges</div>
+                <div class="tag" id="siteTag" data-en="Excellence in Education • Future Ready" data-ur="تعلیم میں برتری • مستقبل کے لیے تیار">Excellence in Education • Future Ready</div>
+            </div>
+        </div>
+
+        <nav id="mainNav">
+            <a href="index.html" class="nav-link" data-en="Home" data-ur="ہوم">Home</a>
+            <a href="index.html#programs" class="nav-link" data-en="Programs" data-ur="پروگرام">Programs</a>
+            <a href="apply.html" class="nav-link" data-en="Apply" data-ur="درخواست">Apply</a>
+            <a href="index.html#contact" class="nav-link" data-en="Contact" data-ur="رابطہ">Contact</a>
+        </nav>
+
+        <div class="right-controls">
+            <button class="lang-btn active" id="lang-en" data-lang="en">EN</button>
+            <button class="lang-btn" id="lang-ur" data-lang="ur">UR</button>
+            <a class="cta" href="apply.html" id="applyBtn" data-en="Apply Now" data-ur="اب داخلہ لیں">
+                <i class="fas fa-arrow-right"></i> Apply Now
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content - This will change based on the page -->
+    <main id="main-content">
+        <!-- FA Program Overview Page -->
+        <section class="fa-hero" id="fa-overview">
+            <div class="program-badge" data-en="Faculty of Arts" data-ur="فیکلٹی آف آرٹس">Faculty of Arts</div>
+            <h1 class="fa-title" data-en="FA Program (DG Khan Board)" data-ur="FA پروگرام (ڈی جی خان بورڈ)">FA Program (DG Khan Board)</h1>
+            <p class="fa-subtitle" data-en="Comprehensive arts education following DG Khan Board curriculum for a well-rounded academic foundation" data-ur="ڈی جی خان بورڈ کے نصاب کے مطابق جامع آرٹس کی تعلیم ایک جامع تعلیمی بنیاد کے لیے">Comprehensive arts education following DG Khan Board curriculum for a well-rounded academic foundation</p>
+        </section>
+
+        <!-- Board Info Section -->
+        <section class="board-info">
+            <div class="board-badge" data-en="DG Khan Board Curriculum" data-ur="ڈی جی خان بورڈ نصاب">DG Khan Board Curriculum</div>
+            <h2 class="board-title" data-en="Officially Recognized by DG Khan Board" data-ur="ڈی جی خان بورڈ کی طرف سے سرکاری طور پر تسلیم شدہ">Officially Recognized by DG Khan Board</h2>
+            <p class="board-description" data-en="Our FA program follows the official curriculum and examination pattern prescribed by the Board of Intermediate and Secondary Education, DG Khan. Students receive comprehensive preparation for board exams along with developing critical thinking and analytical skills." data-ur="ہمارا FA پروگرام بورڈ آف انٹرمیڈیٹ اینڈ سیکنڈری ایجوکیشن، ڈی جی خان کے ذریعہ تجویز کردہ سرکاری نصاب اور امتحانی پیٹرن پر عمل کرتا ہے۔ طلباء بورڈ امتحانات کے لیے جامع تیاری کے ساتھ ساتھ تنقیدی سوچ اور تجزیاتی مہارتیں بھی تیار کرتے ہیں۔">Our FA program follows the official curriculum and examination pattern prescribed by the Board of Intermediate and Secondary Education, DG Khan. Students receive comprehensive preparation for board exams along with developing critical thinking and analytical skills.</p>
+        </section>
+
+        <!-- Part Selection Section -->
+        <section class="part-selection-section">
+            <div class="section-header">
+                <h2 class="section-title" data-en="FA Program Structure" data-ur="FA پروگرام کا ڈھانچہ">FA Program Structure</h2>
+                <p class="section-subtitle" data-en="Complete 2-year program divided into Part 1 and Part 2 with DG Khan Board subjects" data-ur="ڈی جی خان بورڈ کے مضامین کے ساتھ پارٹ 1 اور پارٹ 2 میں تقسیم 2 سالہ مکمل پروگرام">Complete 2-year program divided into Part 1 and Part 2 with DG Khan Board subjects</p>
+            </div>
+
+            <div class="part-selection-container">
+                <!-- Part 1 Card -->
+                <a href="fa-part1.html" class="part-card part1-card">
+                    <div class="part-badge">Part 1</div>
+                    <div class="part-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3 class="part-card-title" data-en="FA Part 1 (1st Year)" data-ur="FA پارٹ 1 (پہلا سال)">FA Part 1 (1st Year)</h3>
+                    <p class="part-card-description" data-en="Build strong foundation in arts subjects including languages, social sciences, and humanities according to DG Khan Board syllabus" data-ur="ڈی جی خان بورڈ کے نصاب کے مطابق زبانیں، سماجی علوم اور ہیومینٹیز سمیت آرٹس کے مضامین میں مضبوط بنیاد بنائیں">Build strong foundation in arts subjects including languages, social sciences, and humanities according to DG Khan Board syllabus</p>
+                    
+                    <div class="subjects-list">
+                        <h4><i class="fas fa-book"></i> <span data-en="Compulsory Subjects" data-ur="لازمی مضامین">Compulsory Subjects</span></h4>
+                        <div class="subjects-grid">
+                            <div class="subject-item">
+                                <div class="subject-icon"><i class="fas fa-language"></i></div>
+                                <span class="subject-name" data-en="English" data-ur="انگریزی">English</span>
+                            </div>
+                            <div class="subject-item">
+                                <div class="subject-icon"><i class="fas fa-flag"></i></div>
+                                <span class="subject-name" data-en="Urdu" data-ur="اردو">Urdu</span>
+                            </div>
+                            <div class="subject-item">
+                                <div class="subject-icon"><i class="fas fa-peace"></i></div>
+                                <span class="subject-name" data-en="Islamic Studies / Ethics" data-ur="اسلامیات / اخلاقیات">Islamic Studies / Ethics</span>
+                            </div>
+                            <div class="subject-item">
+                                <div class="subject-icon"><i class="fas fa-user-shield"></i></div>
+                                <span class="subject-name" data-en="Pakistan Studies" data-ur="پاکستان اسٹڈیز">Pakistan Studies</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="subjects-list">
+                        <h4><i class="fas fa-book-open"></i> <span data-en="Optional Subjects" data-ur="اختیاری مضامین">Optional Subjects</span></h4>
+                        <div class="subjects-grid">
+                            <div class="subject-item">
+                                <div class="subject-icon"><i class="fas fa-landmark"></i></div>
+                                <span class="subject-name" data-en="Education" data-ur="تعلیم">Education</span>
+                            </div>
+                            <div class="subject-item">
+                                <div class="subject-icon"><i class="fas fa-globe-asia"></i></div>
+                                <span class="subject-name" data-en="Geography" data-ur="جغرافیہ">Geography</span>
+                            </div>
+                            <div class="subject-item">
+                                <div class="subject-icon"><i class="fas fa-history"></i></div>
+                                <span class="subject-name" data-en="History" data-ur="تاریخ">History</span>
+                            </div>
+                            <div class="subject-item">
+                                <div class="subject-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                                <span class="subject-name" data-en="Economics" data-ur="معاشیات">Economics</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="part-features">
+                        <span class="feature-tag" data-en="Language Skills" data-ur="زبان کی مہارتیں">Language Skills</span>
+                        <span class="feature-tag" data-en="Social Sciences" data-ur="سماجی علوم">Social Sciences</span>
+                        <span class="feature-tag" data-en="Critical Thinking" data-ur="تنقیدی سوچ">Critical Thinking</span>
+                    </div>
+                    
+                    <div class="part-cta">
+                        <span data-en="Explore Part 1" data-ur="پارٹ 1 دریافت کریں">Explore Part 1</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <div class="part-gradient"></div>
+                </a>
+
+                <!-- Part 2 Card -->
+                <a href="fa-part2.html" class="part-card part2-card">
+                    <div class="part-badge">Part 2</div>
+                    <div class="part-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="part-card-title" data-en="FA Part 2 (2nd Year)" data-ur="FA پارٹ 2 (دوسرا سال)">FA Part 2 (2nd Year)</h3>
+                    <p class="part-card-description" data-en="Advanced studies in arts subjects with specialization options according to DG Khan Board curriculum" data-ur="ڈی جی خان بورڈ کے نصاب کے مطابق آرٹس کے مضامین میں اعلیٰ تعلیم کے ساتھ خصوصی اختیارات">Advanced studies in arts subjects with specialization options according to DG Khan Board curriculum</p>
+                    
+                    <div class="subjects-list">
+                        <h4><i class="fas fa-book"></i> <span data-en="Compulsory Subjects" data-ur="لازمی مضامین">Compulsory Subjects</span></h4>
+                        <div class="subjects-grid">
+                            <div class="subject-item">
+                                <div class="subject-icon"><i class="fas fa-language"></i></div>
+                                <span class="subject-name" data-en="English" data-ur="انگریزی">English</span>
+                            </div>
+                            <div class="subject-item">
+                                <div class="subject-icon"><i class="fas fa-flag"></i></div>
+                                <span class="subject-name" data-en="Urdu" data-ur="اردو">Urdu</span>
+                            </div>
+                            <div class="subject-item">
+                                <div class="subject-icon"><i class="fas fa-peace"></i></div>
+                                <span class="subject-name" data-en="Islamic Studies / Ethics" data-ur="اسلامیات / اخلاقیات">Islamic Studies / Ethics</span>
+                            </div>
+                            <div class="subject-item">
+                                <div class="subject-icon"><i class="fas fa-user-shield"></i></div>
+                                <span class="subject-name" data-en="Pakistan Studies" data-ur="پاکستان اسٹڈیز">Pakistan Studies</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="subjects-list">
+                        <h4><i class="fas fa-book-open"></i> <span data-en="Optional Subjects" data-ur="اختیاری مضامین">Optional Subjects</span></h4>
+                        <div class="subjects-grid">
+                            <div class="subject-item">
+                                <div class="subject-icon"><i class="fas fa-landmark"></i></div>
+                                <span class="subject-name" data-en="Education" data-ur="تعلیم">Education</span>
+                            </div>
+                            <div class="subject-item">
+                                <div class="subject-icon"><i class="fas fa-globe-asia"></i></div>
+                                <span class="subject-name" data-en="Geography" data-ur="جغرافیہ">Geography</span>
+                            </div>
+                            <div class="subject-item">
+                                <div class="subject-icon"><i class="fas fa-history"></i></div>
+                                <span class="subject-name" data-en="History" data-ur="تاریخ">History</span>
+                            </div>
+                            <div class="subject-item">
+                                <div class="subject-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                                <span class="subject-name" data-en="Economics" data-ur="معاشیات">Economics</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="part-features">
+                        <span class="feature-tag" data-en="Advanced Studies" data-ur="اعلیٰ تعلیم">Advanced Studies</span>
+                        <span class="feature-tag" data-en="Specialization" data-ur="تخصص">Specialization</span>
+                        <span class="feature-tag" data-en="Research Skills" data-ur="تحقیقی مہارتیں">Research Skills</span>
+                    </div>
+                    
+                    <div class="part-cta">
+                        <span data-en="Explore Part 2" data-ur="پارٹ 2 دریافت کریں">Explore Part 2</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <div class="part-gradient"></div>
+                </a>
+            </div>
+        </section>
+
+        <!-- FA Details Section -->
+        <section class="fa-details">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Why Choose FA at Star Group?" data-ur="سٹار گروپ میں FA کیوں منتخب کریں؟">Why Choose FA at Star Group?</h2>
+                <p class="section-subtitle" data-en="Comprehensive arts education with modern curriculum and practical approach tailored for DG Khan Board" data-ur="ڈی جی خان بورڈ کے لیے تیار کردہ جدید نصاب اور عملی نقطہ نظر کے ساتھ جامع آرٹس کی تعلیم">Comprehensive arts education with modern curriculum and practical approach tailored for DG Khan Board</p>
+            </div>
+
+            <div class="details-grid">
+                <div class="detail-card">
+                    <div class="detail-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3 class="detail-title" data-en="DG Khan Board Curriculum" data-ur="ڈی جی خان بورڈ نصاب">DG Khan Board Curriculum</h3>
+                    <p data-en="Complete coverage of official DG Khan Board syllabus with expert guidance for board examinations" data-ur="بورڈ امتحانات کے لیے ماہر رہنم

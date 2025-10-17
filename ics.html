@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ICS Program - Star Group of Colleges</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+    --bg: #f8fbff;
+    --card: #ffffff;
+    --accent1: #2563eb;
+    --accent2: #7c3aed;
+    --accent3: #06b6d4;
+    --muted: #64748b;
+    --text: #0f172a;
+    --gradient: linear-gradient(135deg, var(--accent1), var(--accent2));
+    --shadow-sm: 0 2px 12px rgba(15, 23, 42, 0.04);
+    --shadow-md: 0 8px 30px rgba(15, 23, 42, 0.08);
+    --shadow-lg: 0 20px 60px rgba(15, 23, 42, 0.12);
+    --radius: 16px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  html, body {
+    height: 100%;
+    font-family: "Inter", "Noto Sans Arabic", system-ui, sans-serif;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    color: var(--text);
+    scroll-behavior: smooth;
+  }
+
+  .wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* Header */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+    background: var(--gradient);
+    display: grid;
+    place-items: center;
+    color: white;
+    font-weight: 800;
+    font-size: 20px;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    /* Add these for image logo */
+    overflow: hidden;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+.logo:hover {
+    transform: rotate(5deg) scale(1.05);
+}
+
+  .site-meta .title {
+    font-weight: 800;
+    font-size: 22px;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .site-meta .tag {
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  nav {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+
+  nav a {
+    padding: 12px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--text);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+
+  nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient);
+    opacity: 0.1;
+    transition: left 0.3s ease;
+  }
+
+  nav a:hover::before {
+    left: 0;
+  }
+
+  nav a:hover {
+    color: var(--accent1);
+    transform: translateY(-2px);
+  }
+
+  .right-controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .lang-btn {
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(100, 116, 139, 0.2);
+    background: white;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+  }
+
+  .lang-btn.active {
+    background: var(--gradient);
+    color: white;
+    border-color: transparent;
+    transform: scale(1.05);
+  }
+
+  .cta {
+    padding: 12px 24px;
+    border-radius: 12px;
+    background: var(--gradient);
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    transition: var(--transition);
+    box-shadow: var(--shadow-md);
+  }
+
+  .cta:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* ICS Hero Section */
+  .ics-hero {
+    text-align: center;
+    padding: 80px 0 40px;
+  }
+
+  .program-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-md);
+  }
+
+  .ics-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .ics-subtitle {
+    font-size: 1.3rem;
+    color: var(--muted);
+    max-width: 600px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+  }
+
+  /* Part Selection Section */
+  .part-selection-section {
+    padding: 60px 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-subtitle {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .part-selection-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .part-selection-container {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+
+  .part-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-decoration: none;
+    color: var(--text);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(100, 116, 139, 0.1);
+    text-align: center;
+  }
+
+  .part-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .part-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .part-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 25px;
+    font-size: 2rem;
+    transition: var(--transition);
+  }
+
+  .part1-card .part-icon {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+  }
+
+  .part2-card .part-icon {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    color: white;
+  }
+
+  .part-card:hover .part-icon {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  .part-card-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .part-card-description {
+    color: var(--muted);
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  .part-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 30px;
+    justify-content: center;
+  }
+
+  .feature-tag {
+    background: rgba(100, 116, 139, 0.1);
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .part-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: var(--accent1);
+    transition: var(--transition);
+    padding: 12px 24px;
+    border-radius: 12px;
+    background: rgba(37, 99, 235, 0.1);
+  }
+
+  .part-card:hover .part-cta {
+    gap: 15px;
+    color: white;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+  }
+
+  .part-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .part-card:hover .part-gradient {
+    transform: scaleX(1);
+  }
+
+  /* ICS Details Section */
+  .ics-details {
+    padding: 60px 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  }
+
+  .details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+  }
+
+  .detail-card {
+    background: white;
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+  }
+
+  .detail-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .detail-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    display: grid;
+    place-items: center;
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .detail-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  /* Career Opportunities */
+  .career-section {
+    padding: 60px 0;
+  }
+
+  .career-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+  }
+
+  .career-item {
+    background: white;
+    padding: 20px;
+    border-radius: var(--radius);
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+  }
+
+  .career-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .career-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    display: grid;
+    place-items: center;
+    color: white;
+    font-size: 1.2rem;
+    margin: 0 auto 15px;
+  }
+
+  /* CTA Section */
+  .ics-cta {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    padding: 60px 40px;
+    border-radius: var(--radius);
+    text-align: center;
+    margin: 60px 0;
+  }
+
+  .ics-cta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+
+  .ics-cta p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+  }
+
+  .btn-white {
+    background: white;
+    color: #2563eb;
+    padding: 14px 32px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn-white:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Footer */
+  footer {
+    padding: 40px 0;
+    text-align: center;
+    color: var(--muted);
+    border-top: 1px solid rgba(100, 116, 139, 0.1);
+  }
+
+  .rtl { direction: rtl; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+    }
+    
+    nav {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .ics-title {
+      font-size: 2.5rem;
+    }
+    
+    .part-selection-container {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Header -->
+  <header>
+    <div class="brand">
+            <a href="#" class="logo">
+          <img src="https://scontent.fmux3-1.fna.fbcdn.net/v/t39.30808-6/555899704_654495634383093_3203885526133639429_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeECJcL9B5A3MGH6o8eevEwjLXAmRu3pFK0tcCZG7ekUrZTWoC0yQhCVptoKG4DZuP-fP43En3XxPKC1oI3MJ2ok&_nc_ohc=7m56WcthycwQ7kNvwGN9T5m&_nc_oc=AdnnohXxV-YZOkt1olvAUf4By6vpn7p77b16mwXjJZ8Th37mFgeu6nRA6jEY8di5AMs&_nc_zt=23&_nc_ht=scontent.fmux3-1.fna&_nc_gid=zOogVPUkbt4lx3LJ87LL7Q&oh=00_Afe9uC9djfDMspQxYOw_GsvDSsjpC91_DLYeG71gSkc4BQ&oe=68F1896E" alt="Your Website Logo">
+</a>
+      <div class="site-meta">
+        <div class="title" id="siteTitle" data-en="Star Group of Colleges" data-ur="سٹار گروپ آف کالجز">Star Group of Colleges</div>
+        <div class="tag" id="siteTag" data-en="Excellence in Education • Future Ready" data-ur="تعلیم میں برتری • مستقبل کے لیے تیار">Excellence in Education • Future Ready</div>
+      </div>
+    </div>
+
+    <nav id="mainNav">
+      <a href="index.html" class="nav-link" data-en="Home" data-ur="ہوم">Home</a>
+      <a href="index.html#programs" class="nav-link" data-en="Programs" data-ur="پروگرام">Programs</a>
+      <a href="apply.html" class="nav-link" data-en="Apply" data-ur="درخواست">Apply</a>
+      <a href="index.html#contact" class="nav-link" data-en="Contact" data-ur="رابطہ">Contact</a>
+    </nav>
+
+    <div class="right-controls">
+      <button class="lang-btn active" id="lang-en" data-lang="en">EN</button>
+      <button class="lang-btn" id="lang-ur" data-lang="ur">UR</button>
+      <a class="cta" href="apply.html" id="applyBtn" data-en="Apply Now" data-ur="اب داخلہ لیں">
+        <i class="fas fa-arrow-right"></i> Apply Now
+      </a>
+    </div>
+  </header>
+
+  <!-- ICS Hero Section -->
+  <section class="ics-hero">
+    <div class="program-badge" data-en="Intermediate in Computer Science" data-ur="انٹرمیڈیٹ ان کمپیوٹر سائنس">Intermediate in Computer Science</div>
+    <h1 class="ics-title" data-en="ICS Program" data-ur="ICS پروگرام">ICS Program</h1>
+    <p class="ics-subtitle" data-en="Master computer science fundamentals and prepare for a successful career in technology" data-ur="کمپیوٹر سائنس کی بنیادی باتوں میں مہارت حاصل کریں اور ٹیکنالوجی میں کامیاب کیریئر کے لیے تیاری کریں">Master computer science fundamentals and prepare for a successful career in technology</p>
+  </section>
+
+  <!-- Part Selection Section -->
+  <section class="part-selection-section">
+    <div class="section-header">
+      <h2 class="section-title" data-en="Choose Your Part" data-ur="اپنا پارٹ منتخب کریں">Choose Your Part</h2>
+      <p class="section-subtitle" data-en="Select Part 1 to build foundations or Part 2 to advance your skills" data-ur="بنیادیں تعمیر کرنے کے لیے پارٹ 1 یا اپنی مہارتیں بڑھانے کے لیے پارٹ 2 منتخب کریں">Select Part 1 to build foundations or Part 2 to advance your skills</p>
+    </div>
+
+    <div class="part-selection-container">
+      <!-- Part 1 Card -->
+      <a href="ics-part1.html" class="part-card part1-card">
+        <div class="part-badge">Part 1</div>
+        <div class="part-icon">
+          <i class="fas fa-seedling"></i>
+        </div>
+        <h3 class="part-card-title" data-en="ICS Part 1" data-ur="ICS پارٹ 1">ICS Part 1</h3>
+        <p class="part-card-description" data-en="Build strong foundation in computer science basics and programming fundamentals" data-ur="کمپیوٹر سائنس کی بنیادی باتوں اور پروگرامنگ کی بنیادی باتوں میں مضبوط بنیاد بنائیں">Build strong foundation in computer science basics and programming fundamentals</p>
+        
+        <div class="part-features">
+          <span class="feature-tag" data-en="Programming Basics" data-ur="پروگرامنگ کی بنیادیں">Programming Basics</span>
+          <span class="feature-tag" data-en="Computer Fundamentals" data-ur="کمپیوٹر کی بنیادی باتیں">Computer Fundamentals</span>
+          <span class="feature-tag" data-en="Mathematics" data-ur="ریاضی">Mathematics</span>
+        </div>
+        
+        <div class="part-cta">
+          <span data-en="Explore Part 1" data-ur="پارٹ 1 دریافت کریں">Explore Part 1</span>
+          <i class="fas fa-arrow-right"></i>
+        </div>
+        <div class="part-gradient"></div>
+      </a>
+
+      <!-- Part 2 Card -->
+      <a href="ics-part2.html" class="part-card part2-card">
+        <div class="part-badge">Part 2</div>
+        <div class="part-icon">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <h3 class="part-card-title" data-en="ICS Part 2" data-ur="ICS پارٹ 2">ICS Part 2</h3>
+        <p class="part-card-description" data-en="Advanced programming concepts, database management, and software development" data-ur="اعلیٰ پروگرامنگ تصورات، ڈیٹا بیس مینجمنٹ، اور سافٹ ویئر ڈویلپمنٹ">Advanced programming concepts, database management, and software development</p>
+        
+        <div class="part-features">
+          <span class="feature-tag" data-en="Advanced Programming" data-ur="اعلیٰ پروگرامنگ">Advanced Programming</span>
+          <span class="feature-tag" data-en="Database Systems" data-ur="ڈیٹا بیس سسٹمز">Database Systems</span>
+          <span class="feature-tag" data-en="Web Development" data-ur="ویب ڈویلپمنٹ">Web Development</span>
+        </div>
+        
+        <div class="part-cta">
+          <span data-en="Explore Part 2" data-ur="پارٹ 2 دریافت کریں">Explore Part 2</span>
+          <i class="fas fa-arrow-right"></i>
+        </div>
+        <div class="part-gradient"></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ICS Details Section -->
+  <section class="ics-details">
+    <div class="section-header">
+      <h2 class="section-title" data-en="Why Choose ICS?" data-ur="ICS کیوں منتخب کریں؟">Why Choose ICS?</h2>
+      <p class="section-subtitle" data-en="Comprehensive computer science education with modern curriculum and practical approach" data-ur="جدید نصاب اور عملی نقطہ نظر کے ساتھ جامع کمپیوٹر سائنس کی تعلیم">Comprehensive computer science education with modern curriculum and practical approach</p>
+    </div>
+
+    <div class="details-grid">
+      <div class="detail-card">
+        <div class="detail-icon">
+          <i class="fas fa-laptop-code"></i>
+        </div>
+        <h3 class="detail-title" data-en="Modern Curriculum" data-ur="جدید نصاب">Modern Curriculum</h3>
+        <p data-en="Updated syllabus covering latest programming languages and technologies" data-ur="تازہ ترین پروگرامنگ زبانوں اور ٹیکنالوجیز کا احاطہ کرنے والا اپ ڈیٹڈ نصاب">Updated syllabus covering latest programming languages and technologies</p>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <h3 class="detail-title" data-en="Expert Faculty" data-ur="ماہر اساتذہ">Expert Faculty</h3>
+        <p data-en="Experienced computer science teachers with industry background" data-ur="انڈسٹری کے پس منظر کے ساتھ تجربہ کار کمپیوٹر سائنس کے اساتذہ">Experienced computer science teachers with industry background</p>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-icon">
+          <i class="fas fa-flask"></i>
+        </div>
+        <h3 class="detail-title" data-en="Lab Facilities" data-ur="لیب سہولیات">Lab Facilities</h3>
+        <p data-en="Well-equipped computer labs with latest software and hardware" data-ur="تازہ ترین سافٹ ویئر اور ہارڈ ویئر کے ساتھ اچھی طرح سے لیس کمپیوٹر لیبز">Well-equipped computer labs with latest software and hardware</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Career Opportunities -->
+  <section class="career-section">
+    <div class="section-header">
+      <h2 class="section-title" data-en="Career Opportunities" data-ur="کیریئر کے مواقع">Career Opportunities</h2>
+      <p class="section-subtitle" data-en="ICS opens doors to various IT and computer science careers" data-ur="ICS آئی ٹی اور کمپیوٹر سائنس کے مختلف کیریئرز کے دروازے کھولتا ہے">ICS opens doors to various IT and computer science careers</p>
+    </div>
+
+    <div class="career-grid">
+      <div class="career-item">
+        <div class="career-icon">
+          <i class="fas fa-code"></i>
+        </div>
+        <h4 data-en="Software Developer" data-ur="سافٹ ویئر ڈویلپر">Software Developer</h4>
+      </div>
+      <div class="career-item">
+        <div class="career-icon">
+          <i class="fas fa-database"></i>
+        </div>
+        <h4 data-en="Database Administrator" data-ur="ڈیٹا بیس ایڈمنسٹریٹر">Database Administrator</h4>
+      </div>
+      <div class="career-item">
+        <div class="career-icon">
+          <i class="fas fa-network-wired"></i>
+        </div>
+        <h4 data-en="Network Engineer" data-ur="نیٹ ورک انجینئر">Network Engineer</h4>
+      </div>
+      <div class="career-item">
+        <div class="career-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h4 data-en="Cyber Security" data-ur="سائبر سیکیورٹی">Cyber Security</h4>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="ics-cta">
+    <h2 data-en="Start Your ICS Journey Today" data-ur="آج ہی اپنا ICS سفر شروع کریں">Start Your ICS Journey Today</h2>
+    <p data-en="Join our ICS program and build a successful career in technology" data-ur="ہمارے ICS پروگرام میں شامل ہوں اور ٹیکنالوجی میں کامیاب کیریئر بنائیں">Join our ICS program and build a successful career in technology</p>
+    <a href="apply.html" class="btn-white" data-en="Apply for ICS" data-ur="ICS کے لیے درخواست دیں">
+      <i class="fas fa-user-plus"></i> Apply for ICS
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div>© <span id="org" data-en="Star Group of Colleges" data-ur="سٹار گروپ آف کالجز">Star Group of Colleges</span> 2024</div>
+    <div style="margin-top: 10px; font-size: 0.9rem;">
+      <span data-en="Shaping Future Technologists" data-ur="مستقبل کے ٹیکنالوجسٹ تشکیل دے رہے ہیں">Shaping Future Technologists</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+// Language Toggle
+(function(){
+  const DEFAULT = 'en';
+  let lang = localStorage.getItem('site-lang') || DEFAULT;
+  const btnEn = document.getElementById('lang-en');
+  const btnUr = document.getElementById('lang-ur');
+
+  function applyLanguage(l){
+    lang = l;
+    localStorage.setItem('site-lang', l);
+    
+    btnEn.classList.toggle('active', l === 'en');
+    btnUr.classList.toggle('active', l === 'ur');
+    
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const enText = el.getAttribute('data-en') || el.textContent;
+      const urText = el.getAttribute('data-ur') || enText;
+      
+      if(l === 'en') {
+        el.textContent = enText;
+        document.documentElement.lang = 'en';
+        document.documentElement.dir = 'ltr';
+        document.body.classList.remove('rtl');
+      } else {
+        el.textContent = urText;
+        document.documentElement.lang = 'ur';
+        document.documentElement.dir = 'rtl';
+        document.body.classList.add('rtl');
+      }
+    });
+  }
+
+  btnEn.addEventListener('click', () => applyLanguage('en'));
+  btnUr.addEventListener('click', () => applyLanguage('ur'));
+  
+  applyLanguage(lang);
+})();
+
+// Smooth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+</script>
+</body>
+</html>

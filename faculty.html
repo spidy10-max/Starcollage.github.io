@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Directory</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #1a2a6c, #2a3a7c);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 25px;
+        }
+        
+        .college-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header-text {
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 25px 0;
+        }
+        
+        .search-box {
+            display: flex;
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            font-size: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-box button {
+            padding: 0 25px;
+            background: #1a2a6c;
+            color: white;
+            border: none;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .search-box button:hover {
+            background: #2a3a7c;
+        }
+        
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .faculty-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .faculty-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .faculty-img {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .faculty-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .faculty-card:hover .faculty-img img {
+            transform: scale(1.05);
+        }
+        
+        .faculty-info {
+            padding: 20px;
+        }
+        
+        .faculty-name {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            color: #1a2a6c;
+        }
+        
+        .faculty-title {
+            color: #2a3a7c;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .faculty-department {
+            display: inline-block;
+            background: #e9ecef;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: #495057;
+        }
+        
+        .faculty-qualification {
+            margin-top: 15px;
+            border-top: 1px solid #e9ecef;
+            padding-top: 15px;
+        }
+        
+        .qualification-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .qualification-item i {
+            width: 20px;
+            margin-right: 10px;
+            color: #1a2a6c;
+            margin-top: 3px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .faculty-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-container {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .college-logo {
+                width: 80px;
+                height: 80px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .faculty-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-box {
+                flex-direction: column;
+            }
+            
+            .search-box input {
+                border-radius: 30px;
+                margin-bottom: 10px;
+            }
+            
+            .search-box button {
+                border-radius: 30px;
+                padding: 12px;
+            }
+            
+            .college-logo {
+                width: 70px;
+                height: 70px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <!-- Replace with your actual college logo URL -->
+                <img src="https://scontent.fmux3-1.fna.fbcdn.net/v/t39.30808-6/555899704_654495634383093_3203885526133639429_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeECJcL9B5A3MGH6o8eevEwjLXAmRu3pFK0tcCZG7ekUrZTWoC0yQhCVptoKG4DZuP-fP43En3XxPKC1oI3MJ2ok&_nc_ohc=88IggLdarhMQ7kNvwFYuIsx&_nc_oc=AdnizHzCGI9psEeoxSTfSX7MUx_IROyoNixkCW3yiAyfy4fkZyDe_puWdrOp0utZY0Y&_nc_zt=23&_nc_ht=scontent.fmux3-1.fna&_nc_gid=vqImXUCL4ikYwyrQX7PFKg&oh=00_AfdqMQYerhV5jXe3Z9aJFVv4loeMFapjZ4kFCQN_i34gTQ&oe=68F7E8AE" alt="College Logo" class="college-logo">
+            </div>
+            <div class="header-text">
+                <h1>Faculty Directory</h1>
+                <p class="subtitle">Meet the minds shaping our future</p>
+            </div>
+        </header>
+        
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search faculty by name, department, or subject...">
+                <button id="searchButton"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+        
+        <div class="faculty-grid" id="facultyGrid">
+            <!-- Faculty cards will be generated by JavaScript -->
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; Powered by Rana Kashan</p>
+    </footer>
+
+    <script>
+        // Faculty data
+        const facultyData = [
+            {
+                id: 1,
+                name: "Muhammad Asif",
+                title: "Teacher of Computer Science and Principle",
+                department: "Computer Science",
+                subjects: ["Computer"],
+                qualification: "MSc Computer Science, BEd",
+                image: "https://scontent.fmux3-1.fna.fbcdn.net/v/t39.30808-6/489420243_2788198834901827_1924579819204320547_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeH0aXexP3crw02kL76mqPnDE9v2k0j5e4wT2_aTSPl7jK_0FIvNrUU65Y3UnhcEF08eSjkZavaOBsh36xAJzTCu&_nc_ohc=bo0mW6DEoggQ7kNvwHVbIfj&_nc_oc=AdnhTGfl22rQa0N22RV_QRkr6Lf_OrI_-lQAfGirjV8cGDtqjFStxNMCMpWydlPmu6U&_nc_zt=23&_nc_ht=scontent.fmux3-1.fna&_nc_gid=crhxvUW84PeWmVeOpTolTA&oh=00_Afc0GYBGCfNJSReACD-NYqg35pzqNMRdIbTd_3lWq1Ltxw&oe=68EFF464"
+            },
+            {
+                id: 2,
+                name: "Aamir Rasheed",
+                title: "Teacher of Mathematics",
+                department: "Mathematics",
+                subjects: ["Mathematics"],
+                qualification: "MPhil Mathematics, BEd",
+                image: "https://scontent.fmux3-1.fna.fbcdn.net/v/t39.30808-6/557822811_666033576562632_3833879051068844290_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHAKp9d8mfQKALYWl6igGfhFE0BhfTIoBAUTQGF9MigEAJh_L2SgkBJb_WmWBLKjDQwHDIWKNUOtHK7T3CEGcLN&_nc_ohc=nXZD8zAiuowQ7kNvwHKF9nb&_nc_oc=AdnMRFL5GKmI3F6SmmX-vPsRi1y1Z4soXVHr-ZgwFwi6GTDaOn425DAueS2Di71HdyA&_nc_zt=23&_nc_ht=scontent.fmux3-1.fna&_nc_gid=9AK-6zayXBVUEk8dfcxaxA&oh=00_AfdAU0M31kfn_UHKF6CV12_DW_JIhn-QTu67JSy2fthIxg&oe=68EFF85B"
+            },
+            {
+                id: 3,
+                name: "Younis Kareem",
+                title: "Teacher of Biology",
+                department: "Biological Sciences",
+                subjects: ["Zoology"],
+                qualification: "MSc Zoology, BEd",
+                image: "https://scontent.fmux3-1.fna.fbcdn.net/v/t1.6435-9/64992523_142456660198974_1271424350997708800_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeFkSP4ZhOLzOnKDqZPc_Xj_aMmL9vZj7MxoyYv29mPszP_y2it0wMG7v2GRgGhCAZx8npeSbbjQwqRL2_Ga5iOb&_nc_ohc=kZd63XxuSWcQ7kNvwE2JE2v&_nc_oc=Adl5lJbq9i2QWAKTMBgW_04XDvA7D5c0sGdgKyYCiEI5y0t7OBaRMFvePzkEmXAzcLY&_nc_zt=23&_nc_ht=scontent.fmux3-1.fna&_nc_gid=7gfDhVTqJS7oGaO5xbfqXg&oh=00_Afc9rw_pekD3a8QnOx5QnbxpQSZan-19ztyiQ1ZuYIAD5Q&oe=69119F9F"
+            },
+            {
+                id: 4,
+                name: "Amir Nawaz",
+                title: "Teacher of Physics",
+                department: "Physics",
+                subjects: ["Quantum Physics"],
+                qualification: "MSc Physics, BEd",
+                image: "https://scontent.fmux3-1.fna.fbcdn.net/v/t39.30808-6/559317664_666122113220445_7386640588797817904_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGsjILabgSI2uHRe7fBh5hjw6I4QxpU2FnDojhDGlTYWYDWRtOcs_l4-thCMV1LP7JkRN1Ltctd5PAURASuYu2S&_nc_ohc=SCT30gARy7wQ7kNvwH64vP-&_nc_oc=AdmddgUNbSuBWRHtZtHZBOdoxGXeORpnO2WQdLbx6f0xHOa1pACf_aJJIJVqRxEexOg&_nc_zt=23&_nc_ht=scontent.fmux3-1.fna&_nc_gid=Qg4tijDkehmEW0zyhcGaVg&oh=00_AfdfFsotFQO534jYK9YYRUF2NOtapMq3sQnefBcX-hY9lg&oe=68EFFC78"
+            },
+            {
+                id: 5,
+                name: "Muhammad Ramzan",
+                title: "Teacher of Chemistry",
+                department: "Chemistry",
+                subjects: ["Chemistry"],
+                qualification: "MSc Chemistry, BEd",
+                image: "https://scontent.fmux3-1.fna.fbcdn.net/v/t39.30808-6/559983428_666111163221540_2172603636681830888_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGKSILei8zUW3tegw5TRQWcvhCvT9cW45q-EK9P1xbjmuRhw41lJG57GJY-r0rWnAG92ysvUM5_k4bDftHZ7Y1P&_nc_ohc=4hEsa2wfWWYQ7kNvwHxRjXm&_nc_oc=Admre_uWizefXEzmQGDrY_vhskngbP6rvJZP4j3myEAouTyGr97G5qMYf7vkIH_maq8&_nc_zt=23&_nc_ht=scontent.fmux3-1.fna&_nc_gid=NrdTasY6hybkkZexHbYzaw&oh=00_AfcDRKdSs1m8aaBKeWxGXKwmC_xUGHAiUr23-lSiO4U_og&oe=68F02958"
+            },
+            {
+                id: 6,
+                name: "Atif Adeem Sumbul",
+                title: "Teacher of Economics",
+                department: "Economics",
+                subjects: ["Economics"],
+                qualification: "MA Economics",
+                image: "https://scontent.fmux3-1.fna.fbcdn.net/v/t39.30808-6/559392109_666109469888376_7676922737437338953_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHJbfDVtHSv0VcSCX6d6rbAkjEwymPYuHiSMTDKY9i4eBFeH1eNQPJT3slzzriTS_WQG4UYZpWvxroWoTHLwLqF&_nc_ohc=c6qOuHGkQSsQ7kNvwE0NKp8&_nc_oc=AdmzsE2b-etPyRLdTVsVdaM60jGmvy10Hr-lbkkan-3T6nLCRByIiem006jqOQ01Fg4&_nc_zt=23&_nc_ht=scontent.fmux3-1.fna&_nc_gid=GbiRbNYNhJyarBgwya6nRg&oh=00_AfeeNtJq2cfTaIDwtoHAZ34AsoV2lX5UfqfDorEMVII6tw&oe=68F01F3D"
+            },             
+            {
+                id: 7,
+                name: "Waseem Akram",
+                title: "Teacher of English",
+                department: "English",
+                subjects: ["English Literature","Communication Skills"],
+                qualification: "MA English, BEd",
+                image: "https://scontent.fmux3-1.fna.fbcdn.net/v/t39.30808-6/559176967_666105046555485_3900212302074064040_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEXc7HI1fASrXenFCW8A81vD2bL0N5dcLsPZsvQ3l1wuy-02zSYWMLnSFIH_zkA8_o9TbFGDKoImGYUvqVJ1LeG&_nc_ohc=NspNOPV59XsQ7kNvwHHBqE8&_nc_oc=AdmXrmneSHO30e3_JjMieF6CiF92zpSWyKEKsu7Md_hzegFNpJ5a4b4vpO9xKcVNr8M&_nc_zt=23&_nc_ht=scontent.fmux3-1.fna&_nc_gid=Qs0XTucsrlefb0MQ_BLRcQ&oh=00_AfeQ5aq3UhueNAtNVvslhg-7sWja0sYQIlDYYmtVGUN5Xw&oe=68F007C1"
+            },
+            {
+                id: 8,
+                name: "Ghulam Shabbir Jafri",
+                title: "Teacher of Urdu",
+                department: "Urdu",
+                subjects: ["Urdu Literature", "Poetry"],
+                qualification: "MA Urdu, BEd",
+                image: "https://scontent.fmux3-1.fna.fbcdn.net/v/t1.6435-9/59163396_103416180881511_5815378322850316288_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeGFvwjmzmCQEXGELX0U5bukihATG_Uq3sqKEBMb9SreyqAo3eEyevqnbuE9Jf-IbtXt4qzRiTFPW6_TRQbiN5z0&_nc_ohc=Y_5luRNQ8aAQ7kNvwH63DY9&_nc_oc=AdkRBYQKzWVrY4kVWLu1i2y_wQPRXhhBBc1qwbLq1mHavnleFwUzHybxYAsx3ee0Ync&_nc_zt=23&_nc_ht=scontent.fmux3-1.fna&_nc_gid=g6F3VXdHoQvDRjOBxz1LKA&oh=00_AfeFDVFGEmLYQJttA3ftJ_JzNqg08ChbfHSuk71lmrQ7YA&oe=69119D6B"
+            },
+            {
+                id: 9,
+                name: "Tayyab Aziz",
+                title: "Teacher of Translation of the Holy Quran and Islamiyat",
+                department: "Islamic Studies",
+                subjects: ["Islamic Literature"],
+                qualification: "MA Islamic",
+                image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+            }
+        ];
+
+        // Function to generate faculty cards
+        function generateFacultyCards(facultyArray) {
+            const facultyGrid = document.getElementById('facultyGrid');
+            facultyGrid.innerHTML = '';
+            
+            if (facultyArray.length === 0) {
+                facultyGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; padding: 40px; font-size: 1.2rem;">No faculty members found matching your search.</p>';
+                return;
+            }
+            
+            facultyArray.forEach(faculty => {
+                const card = document.createElement('div');
+                card.className = 'faculty-card';
+                
+                card.innerHTML = `
+                    <div class="faculty-img">
+                        <img src="${faculty.image}" alt="${faculty.name}">
+                    </div>
+                    <div class="faculty-info">
+                        <h2 class="faculty-name">${faculty.name}</h2>
+                        <p class="faculty-title">${faculty.title}</p>
+                        <span class="faculty-department">${faculty.department}</span>
+                        <p><strong>Subjects:</strong> ${faculty.subjects.join(', ')}</p>
+                        <div class="faculty-qualification">
+                            <div class="qualification-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span><strong>Qualification:</strong> ${faculty.qualification}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                facultyGrid.appendChild(card);
+            });
+        }
+
+        // Function to handle search
+        function handleSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            if (searchTerm.trim() === '') {
+                generateFacultyCards(facultyData);
+                return;
+            }
+            
+            const filteredFaculty = facultyData.filter(faculty => 
+                faculty.name.toLowerCase().includes(searchTerm) ||
+                faculty.department.toLowerCase().includes(searchTerm) ||
+                faculty.title.toLowerCase().includes(searchTerm) ||
+                faculty.subjects.some(subject => subject.toLowerCase().includes(searchTerm)) ||
+                faculty.qualification.toLowerCase().includes(searchTerm)
+            );
+            
+            generateFacultyCards(filteredFaculty);
+        }
+
+        // Event listeners
+        document.getElementById('searchButton').addEventListener('click', handleSearch);
+        document.getElementById('searchInput').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                handleSearch();
+            }
+        });
+
+        // Initialize the page with all faculty
+        generateFacultyCards(facultyData);
+    </script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ICS Part 1 - کتابیں اور مضامین</title>
+<style>
+  :root{
+    --bg:#eef7ff; --card:#ffffff; --accent:#0066d6; --muted:#6b7280;
+  }
+  html,body{height:100%;margin:0;font-family:"Segoe UI", Tahoma, sans-serif;background:var(--bg);color:#222;direction:rtl}
+  .container{max-width:980px;margin:28px auto;padding:18px}
+  header{display:flex;flex-direction:column;gap:6px;align-items:center;margin-bottom:18px}
+  h1{margin:0;color:var(--accent)}
+  p.lead{margin:0;color:var(--muted);text-align:center}
+  .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
+  @media(max-width:880px){.grid{grid-template-columns:1fr;}}
+  .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(10,20,50,0.06)}
+  h2{margin-top:0;color:var(--accent)}
+  ul.clean{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+  ul.clean li{background:#f0f8ff;padding:8px 12px;border-radius:10px;border:1px solid rgba(0,102,214,0.06)}
+  .subject-list li{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:8px;margin-bottom:8px;background:#fbfeff}
+  .subject-list strong{font-size:1.02em}
+  .btn{display:inline-block;padding:8px 12px;border-radius:8px;text-decoration:none;border:0;cursor:pointer}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-outline{background:transparent;border:1px solid #d0e6ff;color:var(--accent)}
+  .books{margin-top:12px}
+  .book-item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:8px;background:#fff;margin-bottom:10px;border:1px solid #f0f6ff}
+  .meta{font-size:0.95em;color:var(--muted)}
+  .footer{margin-top:12px;text-align:center;color:var(--muted);font-weight:600}
+
+  /* modal */
+  .modal-backdrop{position:fixed;inset:0;background:rgba(10,10,30,0.55);display:none;align-items:center;justify-content:center;padding:20px;z-index:60}
+  .modal{width:100%;max-width:900px;height:80vh;background:#fff;border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+  .modal header{padding:10px 14px;background:#f8fbff;border-bottom:1px solid #eef4ff;display:flex;justify-content:space-between;align-items:center}
+  .modal iframe{border:0;flex:1}
+  .close-btn{background:transparent;border:0;font-size:16px;cursor:pointer;color:#444}
+  .note{font-size:0.92em;color:#444;margin-top:10px}
+
+  .small{font-size:0.95em;color:var(--muted)}
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>ICS — Part 1</h1>
+      <p class="lead">DG Khan بورڈ کے مطابق مضامین اور کتابیں — View اور Download اختیارات کے ساتھ</p>
+    </header>
+
+    <div class="grid">
+      <!-- Main column -->
+      <div class="card">
+        <h2>مضامین</h2>
+        <ul class="clean">
+          <li>اردو</li>
+          <li>انگریزی</li>
+          <li>اسلامیات</li>
+          <li>ریاضی</li>
+          <li>کمپیوٹر سائنس</li>
+          <li>فزکس</li>
+          <li>اکنامکس</li>
+          <li>اسٹیٹسٹکس</li>
+          <li>ترجمہ قرآن</li>
+        </ul>
+
+        <section style="margin-top:16px">
+          <h2>کتابیں</h2>
+          <p class="note">View بٹن modal میں PDF کھولے گا؛ Download بٹن سیدھا فائل ڈاؤنلوڈ کرے گا۔</p>
+
+          <!-- Computer book -->
+          <div class="books">
+            <h3 style="color:var(--accent)">کمپیوٹر سائنس</h3>
+            <div class="book-item">
+              <div><strong>Computer — Part I</strong><div class="meta small">Google Drive</div></div>
+              <div>
+                <button class="btn btn-outline view-book" data-title="Computer — Part I" data-url="https://drive.google.com/file/d/1eWO5ULWhPVDUyBbKX1WM8vymr2YxmYps/preview">View</button>
+                <a class="btn btn-primary" href="https://drive.google.com/uc?export=download&id=1eWO5ULWhPVDUyBbKX1WM8vymr2YxmYps" target="_blank">Download</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Math book -->
+          <div class="books">
+            <h3 style="color:var(--accent)">ریاضی</h3>
+            <div class="book-item">
+              <div><strong>Math — Part I</strong><div class="meta small">Google Drive</div></div>
+              <div>
+                <button class="btn btn-outline view-book" data-title="Math — Part I" data-url="https://drive.google.com/file/d/12KTRPM54MV7_Nc9ifN_kjPMek6wT1oRX/preview">View</button>
+                <a class="btn btn-primary" href="https://drive.google.com/uc?export=download&id=12KTRPM54MV7_Nc9ifN_kjPMek6wT1oRX" target="_blank">Download</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Physics book -->
+          <div class="books">
+            <h3 style="color:var(--accent)">فزکس</h3>
+            <div class="book-item">
+              <div><strong>Physics — Part I</strong><div class="meta small">Google Drive</div></div>
+              <div>
+                <button class="btn btn-outline view-book" data-title="Physics — Part I" data-url="https://drive.google.com/file/d/1l4lEddAJvJ_KjPOaU3hAeBmdZkG6RGiW/preview">View</button>
+                <a class="btn btn-primary" href="https://drive.google.com/uc?export=download&id=1l4lEddAJvJ_KjPOaU3hAeBmdZkG6RGiW" target="_blank">Download</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Economics book -->
+          <div class="books">
+            <h3 style="color:var(--accent)">اکنامکس</h3>
+            <div class="book-item">
+              <div><strong>Economics — Part I</strong><div class="meta small">Google Drive</div></div>
+              <div>
+                <button class="btn btn-outline view-book" data-title="Economics — Part I" data-url="https://drive.google.com/file/d/1hpdlUNGLZn6LPFIawwUlB3apxin2P6EU/preview">View</button>
+                <a class="btn btn-primary" href="https://drive.google.com/uc?export=download&id=1hpdlUNGLZn6LPFIawwUlB3apxin2P6EU" target="_blank">Download</a>
+              </div>
+            </div>
+            <!-- Additional Economics book -->
+            <div class="book-item">
+              <div><strong>Economics — Additional Book</strong><div class="meta small">Google Drive</div></div>
+              <div>
+                <button class="btn btn-outline view-book" data-title="Economics — Additional Book" data-url="https://drive.google.com/file/d/1TyV2p2dxexTpbTvL-PqK5kLfn2XmSD6A/preview">View</button>
+                <a class="btn btn-primary" href="https://drive.google.com/uc?export=download&id=1TyV2p2dxexTpbTvL-PqK5kLfn2XmSD6A" target="_blank">Download</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- English book -->
+          <div class="books">
+            <h3 style="color:var(--accent)">انگریزی</h3>
+            <div class="book-item">
+              <div><strong>English — Part I</strong><div class="meta small">Google Drive</div></div>
+              <div>
+                <button class="btn btn-outline view-book" data-title="English — Part I" data-url="https://drive.google.com/file/d/1pGGeTfA_icnSQcNCyw_74UaVLhSXveS8/preview">View</button>
+                <a class="btn btn-primary" href="https://drive.google.com/uc?export=download&id=1pGGeTfA_icnSQcNCyw_74UaVLhSXveS8" target="_blank">Download</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Islamiat book -->
+          <div class="books">
+            <h3 style="color:var(--accent)">اسلامیات</h3>
+            <div class="book-item">
+              <div><strong>Islamiat</strong><div class="meta small">Google Drive</div></div>
+              <div>
+                <button class="btn btn-outline view-book" data-title="Islamiat" data-url="https://drive.google.com/file/d/1YukBznawJyX9QhzxWP6DbmXYHPSzwCRW/preview">View</button>
+                <a class="btn btn-primary" href="https://drive.google.com/uc?export=download&id=1YukBznawJyX9QhzxWP6DbmXYHPSzwCRW" target="_blank">Download</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Urdu book -->
+          <div class="books">
+            <h3 style="color:var(--accent)">اردو</h3>
+            <div class="book-item">
+              <div><strong>Urdu — Part I</strong><div class="meta small">Google Drive</div></div>
+              <div>
+                <button class="btn btn-outline view-book" data-title="Urdu — Part I" data-url="https://drive.google.com/file/d/1eBSJe5LtViw1I078FVOT121OGJeljPVb/preview">View</button>
+                <a class="btn btn-primary" href="https://drive.google.com/uc?export=download&id=1eBSJe5LtViw1I078FVOT121OGJeljPVb" target="_blank">Download</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Statistics book -->
+          <div class="books">
+            <h3 style="color:var(--accent)">اسٹیٹسٹکس</h3>
+            <div class="book-item">
+              <div><strong>Statistics — Part I</strong><div class="meta small">Google Drive</div></div>
+              <div>
+                <button class="btn btn-outline view-book" data-title="Statistics — Part I" data-url="https://drive.google.com/file/d/1BYO3WE1_zdfx3xdTEtz6h83eTsLfBPdY/preview">View</button>
+                <a class="btn btn-primary" href="https://drive.google.com/uc?export=download&id=1BYO3WE1_zdfx3xdTEtz6h83eTsLfBPdY" target="_blank">Download</a>
+              </div>
+            </div>
+            <!-- Additional Statistics book -->
+            <div class="book-item">
+              <div><strong>Statistics — Additional Book</strong><div class="meta small">Google Drive</div></div>
+              <div>
+                <button class="btn btn-outline view-book" data-title="Statistics — Additional Book" data-url="https://drive.google.com/file/d/12-qoGhuUvsLkBHSCQ-JJuDe9Do62FT3a/preview">View</button>
+                <a class="btn btn-primary" href="https://drive.google.com/uc?export=download&id=12-qoGhuUvsLkBHSCQ-JJuDe9Do62FT3a" target="_blank">Download</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tarjuma Quran book -->
+          <div class="books">
+            <h3 style="color:var(--accent)">ترجمہ قرآن</h3>
+            <div class="book-item">
+              <div><strong>ترجمہ قرآن</strong><div class="meta small">Google Drive</div></div>
+              <div>
+                <button class="btn btn-outline view-book" data-title="ترجمہ قرآن" data-url="https://drive.google.com/file/d/13-5E7OTI7SXT_n8n3JVr2w1FoA-3YC5k/preview">View</button>
+                <a class="btn btn-primary" href="https://drive.google.com/uc?export=download&id=13-5E7OTI7SXT_n8n3JVr2w1FoA-3YC5k" target="_blank">Download</a>
+              </div>
+            </div>
+          </div>
+
+        </section>
+      </div>
+
+      <!-- Right column -->
+      <aside>
+        <div class="card">
+          <h2>اساتذہ</h2>
+          <ul style="padding:0;margin:0;list-style:none">
+            <li class="subject-list"><strong>سر آصف</strong><span>کمپیوٹر</span></li>
+            <li class="subject-list"><strong>سر عامر رانا</strong><span>ریاضی</span></li>
+            <li class="subject-list"><strong>سر عامر قریشی</strong><span>فزکس</span></li>
+            <li class="subject-list"><strong>سر عاطف</strong><span>اکنامکس</span></li>
+          </ul>
+          <div class="footer">مزید معلومات: 0318-0198933</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- modal -->
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="View Book">
+      <header>
+        <div id="modalTitle">کتاب</div>
+        <button class="close-btn" id="closeModal">✕</button>
+      </header>
+      <iframe id="bookFrame" src="" title="Book viewer"></iframe>
+    </div>
+  </div>
+
+<script>
+  const viewBtns = document.querySelectorAll('.view-book');
+  const modal = document.getElementById('modalBackdrop');
+  const frame = document.getElementById('bookFrame');
+  const modalTitle = document.getElementById('modalTitle');
+  const closeBtn = document.getElementById('closeModal');
+
+  viewBtns.forEach(b => {
+    b.addEventListener('click', () => {
+      const url = b.getAttribute('data-url') || '';
+      const title = b.getAttribute('data-title') || 'کتاب';
+      if(!url) { alert('کتاب کا لنک دستیاب نہیں ہے۔'); return; }
+      modalTitle.textContent = title;
+      frame.src = url;
+      modal.style.display = 'flex';
+      modal.setAttribute('aria-hidden','false');
+    });
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+  function closeModal() {
+    frame.src = '';
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden','true');
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>FSC Program - Star Group of Colleges</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #f8fbff;
+            --card: #ffffff;
+            --accent1: #059669;
+            --accent2: #0d9488;
+            --accent3: #0ea5e9;
+            --muted: #64748b;
+            --text: #0f172a;
+            --gradient: linear-gradient(135deg, var(--accent1), var(--accent2));
+            --shadow-sm: 0 2px 12px rgba(15, 23, 42, 0.04);
+            --shadow-md: 0 8px 30px rgba(15, 23, 42, 0.08);
+            --shadow-lg: 0 20px 60px rgba(15, 23, 42, 0.12);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        html, body {
+            height: 100%;
+            font-family: "Inter", "Noto Sans Arabic", system-ui, sans-serif;
+            background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+            color: var(--text);
+            scroll-behavior: smooth;
+        }
+
+        .wrap {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            background: var(--gradient);
+            display: grid;
+            place-items: center;
+            color: white;
+            font-weight: 800;
+            font-size: 20px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        .site-meta .title {
+            font-weight: 800;
+            font-size: 22px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .site-meta .tag {
+            font-size: 14px;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        nav {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        nav a {
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--text);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0.1;
+            transition: left 0.3s ease;
+        }
+
+        nav a:hover::before {
+            left: 0;
+        }
+
+        nav a:hover {
+            color: var(--accent1);
+            transform: translateY(-2px);
+        }
+
+        .right-controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .lang-btn {
+            padding: 10px 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(100, 116, 139, 0.2);
+            background: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .lang-btn.active {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+            transform: scale(1.05);
+        }
+
+        .cta {
+            padding: 12px 24px;
+            border-radius: 12px;
+            background: var(--gradient);
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+        }
+
+        .cta:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* FSC Hero Section */
+        .fsc-hero {
+            text-align: center;
+            padding: 80px 0 40px;
+        }
+
+        .program-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #059669, #0d9488);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .fsc-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #059669, #0d9488);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .fsc-subtitle {
+            font-size: 1.3rem;
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        /* Part Selection Section */
+        .part-selection-section {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .part-selection-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .part-selection-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        .part-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-decoration: none;
+            color: var(--text);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(100, 116, 139, 0.1);
+            text-align: center;
+        }
+
+        .part-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .part-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #059669, #0d9488);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .part-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: grid;
+            place-items: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+            transition: var(--transition);
+        }
+
+        .part1-card .part-icon {
+            background: linear-gradient(135deg, #059669, #0d9488);
+            color: white;
+        }
+
+        .part2-card .part-icon {
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+            color: white;
+        }
+
+        .part-card:hover .part-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .part-card-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .part-card-description {
+            color: var(--muted);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .part-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .feature-tag {
+            background: rgba(100, 116, 139, 0.1);
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .part-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            color: var(--accent1);
+            transition: var(--transition);
+            padding: 12px 24px;
+            border-radius: 12px;
+            background: rgba(5, 150, 105, 0.1);
+        }
+
+        .part-card:hover .part-cta {
+            gap: 15px;
+            color: white;
+            background: linear-gradient(135deg, #059669, #0d9488);
+        }
+
+        .part-gradient {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .part-card:hover .part-gradient {
+            transform: scaleX(1);
+        }
+
+        /* FSC Details Section */
+        .fsc-details {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .detail-card {
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .detail-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #059669, #0d9488);
+            display: grid;
+            place-items: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .detail-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        /* Career Opportunities */
+        .career-section {
+            padding: 60px 0;
+        }
+
+        .career-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .career-item {
+            background: white;
+            padding: 20px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .career-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .career-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #059669, #0d9488);
+            display: grid;
+            place-items: center;
+            color: white;
+            font-size: 1.2rem;
+            margin: 0 auto 15px;
+        }
+
+        /* CTA Section */
+        .fsc-cta {
+            background: linear-gradient(135deg, #059669, #0d9488);
+            color: white;
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .fsc-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .fsc-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn-white {
+            background: white;
+            color: #059669;
+            padding: 14px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: var(--muted);
+            border-top: 1px solid rgba(100, 116, 139, 0.1);
+        }
+
+        .rtl { direction: rtl; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .fsc-title {
+                font-size: 2.5rem;
+            }
+            
+            .part-selection-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+
+    <!-- Header -->
+    <header>
+        <div class="brand">
+            <a href="index.html" class="logo">SG</a>
+            <div class="site-meta">
+                <div class="title" id="siteTitle" data-en="Star Group of Colleges" data-ur="سٹار گروپ آف کالجز">Star Group of Colleges</div>
+                <div class="tag" id="siteTag" data-en="Excellence in Education • Future Ready" data-ur="تعلیم میں برتری • مستقبل کے لیے تیار">Excellence in Education • Future Ready</div>
+            </div>
+        </div>
+
+        <nav id="mainNav">
+            <a href="index.html" class="nav-link" data-en="Home" data-ur="ہوم">Home</a>
+            <a href="index.html#programs" class="nav-link" data-en="Programs" data-ur="پروگرام">Programs</a>
+            <a href="apply.html" class="nav-link" data-en="Apply" data-ur="درخواست">Apply</a>
+            <a href="index.html#contact" class="nav-link" data-en="Contact" data-ur="رابطہ">Contact</a>
+        </nav>
+
+        <div class="right-controls">
+            <button class="lang-btn active" id="lang-en" data-lang="en">EN</button>
+            <button class="lang-btn" id="lang-ur" data-lang="ur">UR</button>
+            <a class="cta" href="apply.html" id="applyBtn" data-en="Apply Now" data-ur="اب داخلہ لیں">
+                <i class="fas fa-arrow-right"></i> Apply Now
+            </a>
+        </div>
+    </header>
+
+    <!-- FSC Hero Section -->
+    <section class="fsc-hero">
+        <div class="program-badge" data-en="Faculty of Science" data-ur="فیکلٹی آف سائنس">Faculty of Science</div>
+        <h1 class="fsc-title" data-en="FSC Program" data-ur="FSC پروگرام">FSC Program</h1>
+        <p class="fsc-subtitle" data-en="Build a strong foundation in sciences and prepare for professional careers in medicine, engineering, and technology" data-ur="سائنسز میں مضبوط بنیاد بنائیں اور طب، انجینئرنگ اور ٹیکنالوجی میں پیشہ ورانہ کیریئر کے لیے تیاری کریں">Build a strong foundation in sciences and prepare for professional careers in medicine, engineering, and technology</p>
+    </section>
+
+    <!-- Part Selection Section -->
+    <section class="part-selection-section">
+        <div class="section-header">
+            <h2 class="section-title" data-en="Program Structure" data-ur="پروگرام کی ساخت">Program Structure</h2>
+            <p class="section-subtitle" data-en="Two-year comprehensive program divided into Part 1 and Part 2" data-ur="دو سالہ جامع پروگرام جو پارٹ 1 اور پارٹ 2 میں تقسیم ہے">Two-year comprehensive program divided into Part 1 and Part 2</p>
+        </div>
+
+        <div class="part-selection-container">
+            <!-- Part 1 Card -->
+            <a href="fsc-part1.html" class="part-card part1-card">
+                <div class="part-badge">Part 1</div>
+                <div class="part-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <h3 class="part-card-title" data-en="FSC Part 1" data-ur="FSC پارٹ 1">FSC Part 1</h3>
+                <p class="part-card-description" data-en="Foundation year with core science subjects and practical laboratory work" data-ur="بنیادی سائنس کے مضامین اور عملی لیبارٹری کام کے ساتھ فاؤنڈیشن سال">Foundation year with core science subjects and practical laboratory work</p>
+                
+                <div class="part-features">
+                    <span class="feature-tag" data-en="Biology" data-ur="حیاتیات">Biology</span>
+                    <span class="feature-tag" data-en="Chemistry" data-ur="کیمسٹری">Chemistry</span>
+                    <span class="feature-tag" data-en="Physics" data-ur="فزکس">Physics</span>
+                    <span class="feature-tag" data-en="English" data-ur="انگریزی">English</span>
+                </div>
+                
+                <div class="part-cta">
+                    <span data-en="Explore Part 1" data-ur="پارٹ 1 دریافت کریں">Explore Part 1</span>
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="part-gradient"></div>
+            </a>
+
+            <!-- Part 2 Card -->
+            <a href="fsc-part2.html" class="part-card part2-card">
+                <div class="part-badge">Part 2</div>
+                <div class="part-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 class="part-card-title" data-en="FSC Part 2" data-ur="FSC پارٹ 2">FSC Part 2</h3>
+                <p class="part-card-description" data-en="Advanced studies with specialization and board examination preparation" data-ur="مہارت اور بورڈ امتحان کی تیاری کے ساتھ اعلیٰ تعلیم">Advanced studies with specialization and board examination preparation</p>
+                
+                <div class="part-features">
+                    <span class="feature-tag" data-en="Advanced Biology" data-ur="اعلیٰ حیاتیات">Advanced Biology</span>
+                    <span class="feature-tag" data-en="Advanced Chemistry" data-ur="اعلیٰ کیمسٹری">Advanced Chemistry</span>
+                    <span class="feature-tag" data-en="Advanced Physics" data-ur="اعلیٰ فزکس">Advanced Physics</span>
+                    <span class="feature-tag" data-en="Urdu" data-ur="اردو">Urdu</span>
+                </div>
+                
+                <div class="part-cta">
+                    <span data-en="Explore Part 2" data-ur="پارٹ 2 دریافت کریں">Explore Part 2</span>
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="part-gradient"></div>
+            </a>
+        </div>
+    </section>
+
+    <!-- FSC Program Details -->
+    <section class="fsc-details">
+        <div class="section-header">
+            <h2 class="section-title" data-en="Why Choose FSC?" data-ur="FSC کیوں منتخب کریں؟">Why Choose FSC?</h2>
+            <p class="section-subtitle" data-en="Comprehensive science education with modern curriculum and practical approach" data-ur="جدید نصاب اور عملی نقطہ نظر کے ساتھ جامع سائنس کی تعلیم">Comprehensive science education with modern curriculum and practical approach</p>
+        </div>
+
+        <div class="details-grid">
+            <div class="detail-card">
+                <div class="detail-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <h3 class="detail-title" data-en="Modern Laboratories" data-ur="جدید لیبارٹریز">Modern Laboratories</h3>
+                <p data-en="Well-equipped labs for physics, chemistry, and biology with latest equipment" data-ur="تازہ ترین سامان کے ساتھ فزکس، کیمسٹری اور حیاتیات کے لیے اچھی طرح سے لیس لیبارٹریز">Well-equipped labs for physics, chemistry, and biology with latest equipment</p>
+            </div>
+
+            <div class="detail-card">
+                <div class="detail-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="detail-title" data-en="Expert Faculty" data-ur="ماہر اساتذہ">Expert Faculty</h3>
+                <p data-en="Experienced science teachers with strong academic backgrounds" data-ur="مضبوط تعلیمی پس منظر کے ساتھ تجربہ کار سائنس کے اساتذہ">Experienced science teachers with strong academic backgrounds</p>
+            </div>
+
+            <div class="detail-card">
+                <div class="detail-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="detail-title" data-en="Excellent Results" data-ur="شاندار نتائج">Excellent Results</h3>
+                <p data-en="Consistent track record of outstanding board examination results" data-ur="بہترین بورڈ امتحانی نتائج کا مستقل ریکارڈ">Consistent track record of outstanding board examination results</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Opportunities -->
+    <section class="career-section">
+        <div class="section-header">
+            <h2 class="section-title" data-en="Career Opportunities" data-ur="کیریئر کے مواقع">Career Opportunities</h2>
+            <p class="section-subtitle" data-en="FSC opens doors to various professional fields in science and technology" data-ur="FSC سائنس اور ٹیکنالوجی میں مختلف پیشہ ورانہ شعبوں کے دروازے کھولتا ہے">FSC opens doors to various professional fields in science and technology</p>
+        </div>
+
+        <div class="career-grid">
+            <div class="career-item">
+                <div class="career-icon">
+                    <i class="fas fa-user-md"></i>
+                </div>
+                <h4 data-en="Medical Doctor" data-ur="میڈیکل ڈاکٹر">Medical Doctor</h4>
+            </div>
+            <div class="career-item">
+                <div class="career-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h4 data-en="Engineer" data-ur="انجینئر">Engineer</h4>
+            </div>
+            <div class="career-item">
+                <div class="career-icon">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <h4 data-en="Research Scientist" data-ur="ریسرچ سائنسدان">Research Scientist</h4>
+            </div>
+            <div class="career-item">
+                <div class="career-icon">
+                    <i class="fas fa-pills"></i>
+                </div>
+                <h4 data-en="Pharmacist" data-ur="فارماسسٹ">Pharmacist</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="fsc-cta">
+        <h2 data-en="Start Your FSC Journey Today" data-ur="آج ہی اپنا FSC سفر شروع کریں">Start Your FSC Journey Today</h2>
+        <p data-en="Join our FSC program and build a successful career in science and technology" data-ur="ہمارے FSC پروگرام میں شامل ہوں اور سائنس اور ٹیکنالوجی میں کامیاب کیریئر بنائیں">Join our FSC program and build a successful career in science and technology</p>
+        <a href="apply.html" class="btn-white" data-en="Apply for FSC" data-ur="FSC کے لیے درخواست دیں">
+            <i class="fas fa-user-plus"></i> Apply for FSC
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div>© <span id="org" data-en="Star Group of Colleges" data-ur="سٹار گروپ آف کالجز">Star Group of Colleges</span> 2024</div>
+        <div style="margin-top: 10px; font-size: 0.9rem;">
+            <span data-en="Shaping Future Scientists" data-ur="مستقبل کے سائنسدان تشکیل دے رہے ہیں">Shaping Future Scientists</span>
+        </div>
+    </footer>
+
+</div>
+
+<script>
+// Language Toggle
+(function(){
+    const DEFAULT = 'en';
+    let lang = localStorage.getItem('site-lang') || DEFAULT;
+    const btnEn = document.getElementById('lang-en');
+    const btnUr = document.getElementById('lang-ur');
+
+    function applyLanguage(l){
+        lang = l;
+        localStorage.setItem('site-lang', l);
+        
+        btnEn.classList.toggle('active', l === 'en');
+        btnUr.classList.toggle('active', l === 'ur');
+        
+        document.querySelectorAll('[data-en]').forEach(el => {
+            const enText = el.getAttribute('data-en') || el.textContent;
+            const urText = el.getAttribute('data-ur') || enText;
+            
+            if(l === 'en') {
+                el.textContent = enText;
+                document.documentElement.lang = 'en';
+                document.documentElement.dir = 'ltr';
+                document.body.classList.remove('rtl');
+            } else {
+                el.textContent = urText;
+                document.documentElement.lang = 'ur';
+                document.documentElement.dir = 'rtl';
+                document.body.classList.add('rtl');
+            }
+        });
+    }
+
+    btnEn.addEventListener('click', () => applyLanguage('en'));
+    btnUr.addEventListener('click', () => applyLanguage('ur'));
+    
+    applyLanguage(lang);
+})();
+
+// Smooth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+</script>
+</body>
+</html>
