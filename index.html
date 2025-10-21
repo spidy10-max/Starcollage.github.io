@@ -39,7 +39,7 @@
     padding: 0 20px;
   }
 
-  /* Modern Header */
+  /* Modern Header - Updated for Mobile Scroll */
   header {
     display: flex;
     align-items: center;
@@ -51,6 +51,10 @@
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+    /* Ensure smooth scrolling on mobile */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
   }
 
   .brand {
@@ -695,6 +699,32 @@
       flex-direction: column;
       gap: 16px;
       text-align: center;
+      position: sticky;
+      top: 0;
+      /* Ensure proper stacking on mobile */
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      /* Fix for iOS Safari */
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      /* Prevent any potential layout issues */
+      width: 100%;
+      left: 0;
+      right: 0;
+    }
+    
+    .brand {
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+    }
+    
+    .site-meta .title {
+      font-size: 18px;
+    }
+    
+    .site-meta .tag {
+      font-size: 12px;
     }
     
     nav {
@@ -736,6 +766,11 @@
     .updates-btn i,
     .cta i {
       font-size: 0.8rem;
+    }
+    
+    /* Ensure header doesn't interfere with content */
+    body {
+      padding-top: 0;
     }
   }
 
