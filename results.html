@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Updates & Reports - Star Group of Colleges</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #f8fbff;
+            --card: #ffffff;
+            --accent1: #2563eb;
+            --accent2: #7c3aed;
+            --accent3: #06b6d4;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --muted: #64748b;
+            --text: #0f172a;
+            --gradient: linear-gradient(135deg, var(--accent1), var(--accent2));
+            --shadow-sm: 0 2px 12px rgba(15, 23, 42, 0.04);
+            --shadow-md: 0 8px 30px rgba(15, 23, 42, 0.08);
+            --shadow-lg: 0 20px 60px rgba(15, 23, 42, 0.12);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        html, body {
+            height: 100%;
+            font-family: "Inter", "Noto Sans Arabic", system-ui, sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            color: var(--text);
+            scroll-behavior: smooth;
+        }
+
+        .wrap {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Modern Header */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            background: var(--gradient);
+            display: grid;
+            place-items: center;
+            color: white;
+            font-weight: 800;
+            font-size: 20px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 14px;
+        }
+
+        .logo:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        .site-meta .title {
+            font-weight: 800;
+            font-size: 22px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .site-meta .tag {
+            font-size: 14px;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        nav {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        nav a {
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--text);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0.1;
+            transition: left 0.3s ease;
+        }
+
+        nav a:hover::before {
+            left: 0;
+        }
+
+        nav a:hover {
+            color: var(--accent1);
+            transform: translateY(-2px);
+        }
+
+        .right-controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .cta {
+            padding: 10px 20px;
+            border-radius: 10px;
+            background: var(--gradient);
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+            font-size: 0.9rem;
+        }
+
+        .cta:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Updates Page Styles */
+        .updates-header {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .updates-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .updates-subtitle {
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Category Navigation */
+        .category-nav {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: none;
+            background: white;
+            font-weight: 600;
+            color: var(--muted);
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .category-btn.active {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .category-btn:hover:not(.active) {
+            background: var(--bg);
+            color: var(--accent1);
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            margin-bottom: 60px;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            color: var(--text);
+        }
+
+        /* Updates Grid */
+        .updates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        .update-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid rgba(100, 116, 139, 0.1);
+        }
+
+        .update-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .update-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(100, 116, 139, 0.1);
+            cursor: pointer;
+        }
+
+        .update-info {
+            padding: 20px;
+        }
+
+        .update-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            align-items: center;
+        }
+
+        .update-type {
+            background: var(--gradient);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .update-date {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .update-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .update-desc {
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Timings Section */
+        .timings-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timing-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 24px;
+            border: 1px solid rgba(100, 116, 139, 0.1);
+        }
+
+        .timing-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--accent1);
+            text-align: center;
+        }
+
+        .timing-schedule {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .timing-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(100, 116, 139, 0.1);
+        }
+
+        .timing-item:last-child {
+            border-bottom: none;
+        }
+
+        .timing-day {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .timing-time {
+            color: var(--accent1);
+            font-weight: 600;
+        }
+
+        .timing-note {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        /* Results Grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .result-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid rgba(100, 116, 139, 0.1);
+        }
+
+        .result-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .result-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(100, 116, 139, 0.1);
+            cursor: pointer;
+        }
+
+        .result-info {
+            padding: 20px;
+        }
+
+        .result-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .result-type {
+            background: var(--success);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .result-date {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .result-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .result-desc {
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* No Content Message */
+        .no-content {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--muted);
+            grid-column: 1 / -1;
+        }
+
+        .no-content i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        /* Modal for full-size image viewing */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--accent3);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: var(--muted);
+            border-top: 1px solid rgba(100, 116, 139, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .category-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .updates-grid,
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .right-controls {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .timing-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+
+    <!-- Modern Header -->
+    <header>
+        <div class="brand">
+            <a href="index.html" class="logo">
+                <img src="https://scontent.fmux3-1.fna.fbcdn.net/v/t39.30808-6/555899704_654495634383093_3203885526133639429_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeECJcL9B5A3MGH6o8eevEwjLXAmRu3pFK0tcCZG7ekUrZTWoC0yQhCVptoKG4DZuP-fP43En3XxPKC1oI3MJ2ok&_nc_ohc=7m56WcthycwQ7kNvwGN9T5m&_nc_oc=AdnnohXxV-YZOkt1olvAUf4By6vpn7p77b16mwXjJZ8Th37mFgeu6nRA6jEY8di5AMs&_nc_zt=23&_nc_ht=scontent.fmux3-1.fna&_nc_gid=zOogVPUkbt4lx3LJ87LL7Q&oh=00_Afe9uC9djfDMspQxYOw_GsvDSsjpC91_DLYeG71gSkc4BQ&oe=68F1896E" alt="Star Group of Colleges Logo">
+            </a>
+            <div class="site-meta">
+                <div class="title">Star Group of Colleges</div>
+                <div class="tag">Excellence in Education • Future Ready</div>
+            </div>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#programs">Programs</a>
+            <a href="index.html#gallery">Gallery</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+
+        <div class="right-controls">
+            <a class="cta" href="apply.html">
+                <i class="fas fa-arrow-right"></i> Apply Now
+            </a>
+        </div>
+    </header>
+
+    <!-- Updates Page Content -->
+    <section class="updates-section">
+        <div class="updates-header">
+            <h1 class="updates-title">Updates & Reports</h1>
+            <p class="updates-subtitle">Stay updated with the latest college news, timings, and student results</p>
+        </div>
+
+        <!-- Category Navigation -->
+        <div class="category-nav">
+            <button class="category-btn active" data-category="updates">Latest Updates</button>
+            <button class="category-btn" data-category="timings">College Timings</button>
+            <button class="category-btn" data-category="results">Student Results</button>
+        </div>
+
+        <!-- Updates Section -->
+        <div class="content-section active" id="updatesSection">
+            <h2 class="section-title">Latest College Updates</h2>
+            <div class="updates-grid" id="updatesContainer">
+                <!-- Updates will be dynamically added here -->
+            </div>
+        </div>
+
+        <!-- Timings Section -->
+        <div class="content-section" id="timingsSection">
+            <h2 class="section-title">College Timings & Schedule</h2>
+            <div class="timings-container">
+                <div class="timing-card">
+                    <h3 class="timing-title">Regular Class Timings</h3>
+                    <div class="timing-schedule">
+                        <div class="timing-item">
+                            <span class="timing-day">Class Schedule</span>
+                            <span class="timing-time">8:45 AM - 1:30 PM</span>
+                        </div>
+                        <div class="timing-item">
+                            <span class="timing-day">Friday</span>
+                            <span class="timing-time">8:45 AM - 11:30 PM</span>
+                        </div>
+                        <div class="timing-item">
+                            <span class="timing-day">Sunday</span>
+                            <span class="timing-time">Closed</span>
+                        </div>
+                    </div>
+                    <p class="timing-note">Timings may vary during Ramadan and special occasions</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="content-section" id="resultsSection">
+            <h2 class="section-title">Student Results</h2>
+            <div class="results-grid" id="resultsContainer">
+                <!-- Results will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for full-size images -->
+    <div class="modal" id="imageModal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImage" src="" alt="">
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div>© Powred by Rana Kashan <span>Star Group of Colleges</span></div>
+    </footer>
+</div>
+
+<script>
+    // DOM Elements
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    const contentSections = document.querySelectorAll('.content-section');
+    const updatesContainer = document.getElementById('updatesContainer');
+    const resultsContainer = document.getElementById('resultsContainer');
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalClose = document.querySelector('.modal-close');
+
+    // Sample data for updates
+    const updatesData = [
+        {
+            id: 1,
+            type: 'announcement',
+            title: 'Latest Announcements',
+            date: '2025-01-05',
+            image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+            description: 'College will reopen on January 15, 2025. All students are expected to attend classes regularly.'
+        },
+        {
+            id: 2,
+            type: 'event',
+            title: 'Annual Sports Gala 2025',
+            date: '2025-02-01',
+            image: 'https://images.unsplash.com/photo-1549060279-7e168fce7090?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+            description: 'Join us for our annual sports gala featuring various competitions and activities.'
+        },
+        {
+            id: 4,
+            type: 'holiday',
+            title: 'Holiday Schedule',
+            date: '2025-03-25',
+            image: 'https://images.unsplash.com/photo-1516450360452-9312f5f86f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+            description: 'College will remain closed for Eid-ul-Fitr holidays from March 28 to April 5, 2025.'
+        }
+    ];
+
+    // Sample data for results
+    const resultsData = [
+        {
+            id: 1,
+            type: 'weekly',
+            program: 'ics',
+            part: 'part1',
+            title: 'ICS Part 1 Weekly Test Results',
+            date: '2025-01-15',
+            image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
+        },
+        {
+            id: 2,
+            type: 'monthly',
+            program: 'ics',
+            part: 'part2',
+            title: 'ICS Part 2 Monthly Test Results',
+            date: '2025-01-20',
+            image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
+        },
+        {
+            id: 3,
+            type: 'weekly',
+            program: 'fsc-premed',
+            part: 'part1',
+            title: 'FSc Pre-Medical Part 1 Weekly Test Results',
+            date: '2025-01-18',
+            image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
+        },
+        {
+            id: 4,
+            type: 'monthly',
+            program: 'fsc-premed',
+            part: 'part2',
+            title: 'FSc Pre-Medical Part 2 Monthly Test Results',
+            date: '2025-01-25',
+            image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
+        },
+        {
+            id: 5,
+            type: 'weekly',
+            program: 'fa',
+            part: 'part1',
+            title: 'FA Part 1 Weekly Test Results',
+            date: '2025-01-16',
+            image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
+        },
+        {
+            id: 6,
+            type: 'monthly',
+            program: 'fa',
+            part: 'part2',
+            title: 'FA Part 2 Monthly Test Results',
+            date: '2025-01-22',
+            image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
+        }
+    ];
+
+    // Initialize the page
+    function init() {
+        displayUpdates();
+        displayResults();
+        setupEventListeners();
+    }
+
+    // Display updates
+    function displayUpdates() {
+        updatesContainer.innerHTML = '';
+
+        if (updatesData.length === 0) {
+            updatesContainer.innerHTML = `
+                <div class="no-content">
+                    <i class="fas fa-newspaper"></i>
+                    <h3>No updates available</h3>
+                    <p>Check back later for the latest college updates</p>
+                </div>
+            `;
+        } else {
+            updatesData.forEach(update => {
+                const updateCard = createUpdateCard(update);
+                updatesContainer.appendChild(updateCard);
+            });
+        }
+    }
+
+    // Display results
+    function displayResults() {
+        resultsContainer.innerHTML = '';
+
+        if (resultsData.length === 0) {
+            resultsContainer.innerHTML = `
+                <div class="no-content">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>No results available</h3>
+                    <p>Results will appear here once published</p>
+                </div>
+            `;
+        } else {
+            resultsData.forEach(result => {
+                const resultCard = createResultCard(result);
+                resultsContainer.appendChild(resultCard);
+            });
+        }
+    }
+
+    // Create an update card element
+    function createUpdateCard(update) {
+        const card = document.createElement('div');
+        card.className = 'update-card';
+        
+        card.innerHTML = `
+            <img src="${update.image}" alt="${update.title}" class="update-image">
+            <div class="update-info">
+                <div class="update-meta">
+                    <span class="update-type">${getUpdateTypeName(update.type)}</span>
+                    <span class="update-date">${formatDate(update.date)}</span>
+                </div>
+                <h3 class="update-title">${update.title}</h3>
+                <p class="update-desc">${update.description}</p>
+            </div>
+        `;
+        
+        // Add click event to open image in modal
+        card.querySelector('.update-image').addEventListener('click', () => {
+            modalImage.src = update.image;
+            modal.style.display = 'flex';
+        });
+        
+        return card;
+    }
+
+    // Create a result card element
+    function createResultCard(result) {
+        const card = document.createElement('div');
+        card.className = 'result-card';
+        
+        card.innerHTML = `
+            <img src="${result.image}" alt="${result.title}" class="result-image">
+            <div class="result-info">
+                <div class="result-meta">
+                    <span class="result-type">${result.type.charAt(0).toUpperCase() + result.type.slice(1)} Test</span>
+                    <span class="result-date">${formatDate(result.date)}</span>
+                </div>
+                <h3 class="result-title">${result.title}</h3>
+                <p class="result-desc">${getProgramName(result.program)} - ${result.part.charAt(0).toUpperCase() + result.part.slice(1)}</p>
+            </div>
+        `;
+        
+        // Add click event to open image in modal
+        card.querySelector('.result-image').addEventListener('click', () => {
+            modalImage.src = result.image;
+            modal.style.display = 'flex';
+        });
+        
+        return card;
+    }
+
+    // Get update type display name
+    function getUpdateTypeName(type) {
+        const typeNames = {
+            'announcement': 'Announcement',
+            'event': 'Event',
+            'news': 'News',
+            'holiday': 'Holiday',
+            'academic': 'Academic',
+            'achievement': 'Achievement'
+        };
+        return typeNames[type] || type;
+    }
+
+    // Get program display name
+    function getProgramName(program) {
+        const programNames = {
+            'ics': 'ICS (Computer Science)',
+            'fsc-premed': 'FSc Pre-Medical',
+            'fsc-preeng': 'FSc Pre-Engineering',
+            'fa': 'FA (Arts & Humanities)'
+        };
+        return programNames[program] || program;
+    }
+
+    // Format date for display
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+        return date.toLocaleDateString(undefined, options);
+    }
+
+    // Setup event listeners
+    function setupEventListeners() {
+        // Category buttons
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                // Hide all content sections
+                contentSections.forEach(section => section.classList.remove('active'));
+                
+                // Show corresponding section
+                const category = btn.dataset.category;
+                document.getElementById(`${category}Section`).classList.add('active');
+            });
+        });
+        
+        // Modal close
+        modalClose.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        
+        // Close modal when clicking outside the image
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    }
+
+    // Initialize the page when DOM is loaded
+    document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
