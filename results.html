@@ -3,11 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Results - Star Group of Colleges</title>
+    <title>Updates & Reports - Star Group of Colleges</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Your existing CSS remains the same */
         :root {
             --bg: #f8fbff;
             --card: #ffffff;
@@ -149,49 +148,29 @@
         }
 
         .cta {
-            padding: 12px 24px;
-            border-radius: 12px;
+            padding: 10px 20px;
+            border-radius: 10px;
             background: var(--gradient);
             color: white;
-            font-weight: 700;
+            font-weight: 600;
             text-decoration: none;
             transition: var(--transition);
             box-shadow: var(--shadow-md);
+            font-size: 0.9rem;
         }
 
         .cta:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
         }
 
-        /* Results Report Button */
-        .results-btn {
-            padding: 12px 24px;
-            border-radius: 12px;
-            background: #10b981;
-            color: white;
-            font-weight: 700;
-            text-decoration: none;
-            transition: var(--transition);
-            box-shadow: var(--shadow-md);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .results-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-            background: #059669;
-        }
-
-        /* Results Page Styles */
-        .results-header {
+        /* Updates Page Styles */
+        .updates-header {
             text-align: center;
             margin: 40px 0;
         }
 
-        .results-title {
+        .updates-title {
             font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 16px;
@@ -201,51 +180,200 @@
             background-clip: text;
         }
 
-        .results-subtitle {
+        .updates-subtitle {
             font-size: 1.1rem;
             color: var(--muted);
             max-width: 600px;
             margin: 0 auto;
         }
 
-        .filter-container {
+        /* Category Navigation */
+        .category-nav {
             display: flex;
             justify-content: center;
-            gap: 16px;
-            margin-bottom: 30px;
+            gap: 8px;
+            margin-bottom: 40px;
             flex-wrap: wrap;
         }
 
-        .filter-group {
-            display: flex;
-            gap: 8px;
-            background: white;
-            padding: 8px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .filter-btn {
-            padding: 10px 20px;
-            border-radius: 10px;
+        .category-btn {
+            padding: 12px 24px;
+            border-radius: 12px;
             border: none;
-            background: transparent;
+            background: white;
             font-weight: 600;
             color: var(--muted);
             cursor: pointer;
             transition: var(--transition);
+            box-shadow: var(--shadow-sm);
         }
 
-        .filter-btn.active {
+        .category-btn.active {
             background: var(--gradient);
             color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
+        .category-btn:hover:not(.active) {
+            background: var(--bg);
+            color: var(--accent1);
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            margin-bottom: 60px;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            color: var(--text);
+        }
+
+        /* Updates Grid */
+        .updates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        .update-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid rgba(100, 116, 139, 0.1);
+        }
+
+        .update-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .update-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(100, 116, 139, 0.1);
+            cursor: pointer;
+        }
+
+        .update-info {
+            padding: 20px;
+        }
+
+        .update-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            align-items: center;
+        }
+
+        .update-type {
+            background: var(--gradient);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .update-date {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .update-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .update-desc {
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Timings Section */
+        .timings-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timing-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 24px;
+            border: 1px solid rgba(100, 116, 139, 0.1);
+        }
+
+        .timing-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--accent1);
+            text-align: center;
+        }
+
+        .timing-schedule {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .timing-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(100, 116, 139, 0.1);
+        }
+
+        .timing-item:last-child {
+            border-bottom: none;
+        }
+
+        .timing-day {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .timing-time {
+            color: var(--accent1);
+            font-weight: 600;
+        }
+
+        .timing-note {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        /* Results Grid */
         .results-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 24px;
-            margin-bottom: 60px;
         }
 
         .result-card {
@@ -255,7 +383,6 @@
             box-shadow: var(--shadow-sm);
             transition: var(--transition);
             border: 1px solid rgba(100, 116, 139, 0.1);
-            position: relative;
         }
 
         .result-card:hover {
@@ -282,7 +409,7 @@
         }
 
         .result-type {
-            background: var(--gradient);
+            background: var(--success);
             color: white;
             padding: 4px 12px;
             border-radius: 20px;
@@ -307,40 +434,15 @@
             line-height: 1.5;
         }
 
-        .delete-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: rgba(239, 68, 68, 0.9);
-            color: white;
-            border: none;
-            display: grid;
-            place-items: center;
-            cursor: pointer;
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .result-card:hover .delete-btn {
-            opacity: 1;
-        }
-
-        .delete-btn:hover {
-            background: var(--error);
-            transform: scale(1.1);
-        }
-
-        .no-results {
+        /* No Content Message */
+        .no-content {
             text-align: center;
             padding: 60px 20px;
             color: var(--muted);
             grid-column: 1 / -1;
         }
 
-        .no-results i {
+        .no-content i {
             font-size: 3rem;
             margin-bottom: 20px;
             opacity: 0.5;
@@ -382,275 +484,12 @@
             color: var(--accent3);
         }
 
-        /* Admin Controls */
-        .admin-controls {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 100;
-        }
-
-        .admin-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--gradient);
-            color: white;
-            display: grid;
-            place-items: center;
-            font-size: 1.5rem;
-            box-shadow: var(--shadow-lg);
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-        }
-
-        .admin-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .admin-panel {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            background: white;
-            border-radius: var(--radius);
-            padding: 20px;
-            box-shadow: var(--shadow-lg);
-            width: 350px;
-            display: none;
-            z-index: 100;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .admin-panel h3 {
-            margin-bottom: 15px;
-            color: var(--text);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .admin-tabs {
-            display: flex;
-            margin-bottom: 15px;
-            border-bottom: 1px solid rgba(100, 116, 139, 0.2);
-        }
-
-        .admin-tab {
-            padding: 10px 15px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--muted);
-            transition: var(--transition);
-            border-bottom: 2px solid transparent;
-        }
-
-        .admin-tab.active {
-            color: var(--accent1);
-            border-bottom-color: var(--accent1);
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid rgba(100, 116, 139, 0.2);
-            font-family: inherit;
-            transition: var(--transition);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--accent1);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        .upload-btn {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            background: var(--gradient);
-            color: white;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .upload-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .upload-btn:disabled {
-            background: var(--muted);
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .preview-image {
-            max-width: 100%;
-            max-height: 150px;
-            margin-top: 10px;
-            border-radius: 8px;
-            display: none;
-        }
-
-        .alert {
-            padding: 12px 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .alert-success {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--success);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-        }
-
-        .alert-error {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--error);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .stat-card {
-            background: var(--bg);
-            padding: 15px;
-            border-radius: 8px;
+        /* Footer */
+        footer {
+            padding: 40px 0;
             text-align: center;
-        }
-
-        .stat-number {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent1);
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
             color: var(--muted);
-        }
-
-        .bulk-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .bulk-btn {
-            flex: 1;
-            padding: 10px;
-            border-radius: 8px;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .bulk-btn.export {
-            background: var(--success);
-            color: white;
-        }
-
-        .bulk-btn.delete {
-            background: var(--error);
-            color: white;
-        }
-
-        /* Password Modal */
-        .password-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1100;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .password-modal-content {
-            background: white;
-            border-radius: var(--radius);
-            padding: 30px;
-            box-shadow: var(--shadow-lg);
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-        }
-
-        .password-modal h3 {
-            margin-bottom: 20px;
-            color: var(--text);
-        }
-
-        .password-input {
-            width: 100%;
-            padding: 12px 15px;
-            border-radius: 8px;
-            border: 1px solid rgba(100, 116, 139, 0.2);
-            margin-bottom: 15px;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-
-        .password-submit {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            background: var(--gradient);
-            color: white;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .password-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            border-top: 1px solid rgba(100, 116, 139, 0.1);
         }
 
         /* Responsive */
@@ -666,16 +505,17 @@
                 justify-content: center;
             }
             
-            .filter-container {
+            .category-nav {
                 flex-direction: column;
                 align-items: center;
             }
             
-            .filter-group {
+            .category-btn {
                 width: 100%;
-                justify-content: center;
+                max-width: 300px;
             }
             
+            .updates-grid,
             .results-grid {
                 grid-template-columns: 1fr;
             }
@@ -685,10 +525,10 @@
                 justify-content: center;
             }
             
-            .admin-panel {
-                width: calc(100% - 40px);
-                right: 20px;
-                left: 20px;
+            .timing-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
             }
         }
     </style>
@@ -700,7 +540,7 @@
     <header>
         <div class="brand">
             <a href="index.html" class="logo">
-                <img src="logo.jpg" alt="Star Group of Colleges Logo">
+                <img src="https://scontent.fmux3-1.fna.fbcdn.net/v/t39.30808-6/555899704_654495634383093_3203885526133639429_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeECJcL9B5A3MGH6o8eevEwjLXAmRu3pFK0tcCZG7ekUrZTWoC0yQhCVptoKG4DZuP-fP43En3XxPKC1oI3MJ2ok&_nc_ohc=7m56WcthycwQ7kNvwGN9T5m&_nc_oc=AdnnohXxV-YZOkt1olvAUf4By6vpn7p77b16mwXjJZ8Th37mFgeu6nRA6jEY8di5AMs&_nc_zt=23&_nc_ht=scontent.fmux3-1.fna&_nc_gid=zOogVPUkbt4lx3LJ87LL7Q&oh=00_Afe9uC9djfDMspQxYOw_GsvDSsjpC91_DLYeG71gSkc4BQ&oe=68F1896E" alt="Star Group of Colleges Logo">
             </a>
             <div class="site-meta">
                 <div class="title">Star Group of Colleges</div>
@@ -722,42 +562,58 @@
         </div>
     </header>
 
-    <!-- Results Page Content -->
-    <section class="results-section">
-        <div class="results-header">
-            <h1 class="results-title">Student Results</h1>
-            <p class="results-subtitle">View student results for all programs and test types</p>
+    <!-- Updates Page Content -->
+    <section class="updates-section">
+        <div class="updates-header">
+            <h1 class="updates-title">Updates & Reports</h1>
+            <p class="updates-subtitle">Stay updated with the latest college news, timings, and student results</p>
         </div>
 
-        <!-- Filter Controls -->
-        <div class="filter-container">
-            <div class="filter-group">
-                <button class="filter-btn active" data-filter="all">All Results</button>
-                <button class="filter-btn" data-filter="weekly">Weekly Tests</button>
-                <button class="filter-btn" data-filter="monthly">Monthly Tests</button>
-            </div>
-            
-            <div class="filter-group">
-                <button class="filter-btn active" data-program="all">All Programs</button>
-                <button class="filter-btn" data-program="ics">ICS</button>
-                <button class="filter-btn" data-program="fsc">FSc</button>
-                <button class="filter-btn" data-program="fa">FA</button>
-            </div>
-            
-            <div class="filter-group">
-                <button class="filter-btn active" data-part="all">All Parts</button>
-                <button class="filter-btn" data-part="part1">Part 1</button>
-                <button class="filter-btn" data-part="part2">Part 2</button>
+        <!-- Category Navigation -->
+        <div class="category-nav">
+            <button class="category-btn active" data-category="updates">Latest Updates</button>
+            <button class="category-btn" data-category="timings">College Timings</button>
+            <button class="category-btn" data-category="results">Student Results</button>
+        </div>
+
+        <!-- Updates Section -->
+        <div class="content-section active" id="updatesSection">
+            <h2 class="section-title">Latest College Updates</h2>
+            <div class="updates-grid" id="updatesContainer">
+                <!-- Updates will be dynamically added here -->
             </div>
         </div>
 
-        <!-- Results Grid -->
-        <div class="results-grid" id="resultsContainer">
-            <!-- Results will be dynamically added here -->
-            <div class="no-results">
-                <i class="fas fa-chart-bar"></i>
-                <h3>No results found</h3>
-                <p>Results will appear here once uploaded</p>
+        <!-- Timings Section -->
+        <div class="content-section" id="timingsSection">
+            <h2 class="section-title">College Timings & Schedule</h2>
+            <div class="timings-container">
+                <div class="timing-card">
+                    <h3 class="timing-title">Regular Class Timings</h3>
+                    <div class="timing-schedule">
+                        <div class="timing-item">
+                            <span class="timing-day">Class Schedule</span>
+                            <span class="timing-time">8:45 AM - 1:30 PM</span>
+                        </div>
+                        <div class="timing-item">
+                            <span class="timing-day">Friday</span>
+                            <span class="timing-time">8:45 AM - 11:30 PM</span>
+                        </div>
+                        <div class="timing-item">
+                            <span class="timing-day">Sunday</span>
+                            <span class="timing-time">Closed</span>
+                        </div>
+                    </div>
+                    <p class="timing-note">Timings may vary during Ramadan and special occasions</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="content-section" id="resultsSection">
+            <h2 class="section-title">Student Results</h2>
+            <div class="results-grid" id="resultsContainer">
+                <!-- Results will be dynamically added here -->
             </div>
         </div>
     </section>
@@ -768,134 +624,6 @@
         <img class="modal-content" id="modalImage" src="" alt="">
     </div>
 
-    <!-- Password Modal -->
-    <div class="password-modal" id="passwordModal">
-        <div class="password-modal-content">
-            <h3>Admin Access Required</h3>
-            <p>Please enter the admin password to continue:</p>
-            <input type="password" class="password-input" id="passwordInput" placeholder="Enter password">
-            <button class="password-submit" id="passwordSubmit">Access Admin Panel</button>
-            <p id="passwordError" style="color: var(--error); margin-top: 10px; display: none;">
-                <i class="fas fa-exclamation-circle"></i> Incorrect password
-            </p>
-        </div>
-    </div>
-
-    <!-- Admin Controls -->
-    <div class="admin-controls">
-        <button class="admin-btn" id="adminToggle">
-            <i class="fas fa-cog"></i>
-        </button>
-        <div class="admin-panel" id="adminPanel">
-            <h3>
-                Admin Panel
-                <span id="adminStatus" class="alert alert-success" style="display: none; font-size: 0.8rem; padding: 5px 10px;">
-                    <i class="fas fa-check"></i> Saved
-                </span>
-            </h3>
-            
-            <div class="admin-tabs">
-                <button class="admin-tab active" data-tab="upload">Upload</button>
-                <button class="admin-tab" data-tab="manage">Manage</button>
-                <button class="admin-tab" data-tab="stats">Stats</button>
-            </div>
-            
-            <!-- Upload Tab -->
-            <div class="tab-content active" id="uploadTab">
-                <form id="uploadForm">
-                    <div class="form-group">
-                        <label for="testType">Test Type</label>
-                        <select class="form-control" id="testType" required>
-                            <option value="">Select Test Type</option>
-                            <option value="weekly">Weekly Test</option>
-                            <option value="monthly">Monthly Test</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="program">Program</label>
-                        <select class="form-control" id="program" required>
-                            <option value="">Select Program</option>
-                            <option value="ics">ICS (Computer Science)</option>
-                            <option value="fsc-premed">FSc Pre-Medical</option>
-                            <option value="fsc-preeng">FSc Pre-Engineering</option>
-                            <option value="fa">FA (Arts & Humanities)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="part">Part</label>
-                        <select class="form-control" id="part" required>
-                            <option value="">Select Part</option>
-                            <option value="part1">Part 1</option>
-                            <option value="part2">Part 2</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="resultTitle">Result Title</label>
-                        <input type="text" class="form-control" id="resultTitle" placeholder="e.g., ICS Part 1 Monthly Test Results" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="resultDate">Test Date</label>
-                        <input type="date" class="form-control" id="resultDate" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="resultImage">Result Image</label>
-                        <input type="file" class="form-control" id="resultImage" accept="image/*" required>
-                        <img id="imagePreview" class="preview-image" src="" alt="Preview">
-                    </div>
-                    
-                    <button type="submit" class="upload-btn" id="submitBtn">
-                        <i class="fas fa-upload"></i> Upload Result
-                    </button>
-                </form>
-            </div>
-            
-            <!-- Manage Tab -->
-            <div class="tab-content" id="manageTab">
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number" id="totalResults">0</div>
-                        <div class="stat-label">Total Results</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="storageUsed">0 KB</div>
-                        <div class="stat-label">Storage Used</div>
-                    </div>
-                </div>
-                
-                <div class="bulk-actions">
-                    <button class="bulk-btn export" id="exportBtn">
-                        <i class="fas fa-download"></i> Export Data
-                    </button>
-                    <button class="bulk-btn delete" id="clearAllBtn">
-                        <i class="fas fa-trash"></i> Clear All
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Stats Tab -->
-            <div class="tab-content" id="statsTab">
-                <div class="form-group">
-                    <label>Results by Program</label>
-                    <div id="programStats">
-                        <!-- Program stats will be populated here -->
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>Results by Test Type</label>
-                    <div id="testTypeStats">
-                        <!-- Test type stats will be populated here -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Footer -->
     <footer>
         <div>© Powred by Rana Kashan <span>Star Group of Colleges</span></div>
@@ -904,125 +632,171 @@
 
 <script>
     // DOM Elements
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    const contentSections = document.querySelectorAll('.content-section');
+    const updatesContainer = document.getElementById('updatesContainer');
     const resultsContainer = document.getElementById('resultsContainer');
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const uploadForm = document.getElementById('uploadForm');
     const modal = document.getElementById('imageModal');
     const modalImage = document.getElementById('modalImage');
     const modalClose = document.querySelector('.modal-close');
-    const adminToggle = document.getElementById('adminToggle');
-    const adminPanel = document.getElementById('adminPanel');
-    const adminTabs = document.querySelectorAll('.admin-tab');
-    const tabContents = document.querySelectorAll('.tab-content');
-    const imagePreview = document.getElementById('imagePreview');
-    const adminStatus = document.getElementById('adminStatus');
-    const totalResults = document.getElementById('totalResults');
-    const storageUsed = document.getElementById('storageUsed');
-    const exportBtn = document.getElementById('exportBtn');
-    const clearAllBtn = document.getElementById('clearAllBtn');
-    const programStats = document.getElementById('programStats');
-    const testTypeStats = document.getElementById('testTypeStats');
-    const submitBtn = document.getElementById('submitBtn');
-    const passwordModal = document.getElementById('passwordModal');
-    const passwordInput = document.getElementById('passwordInput');
-    const passwordSubmit = document.getElementById('passwordSubmit');
-    const passwordError = document.getElementById('passwordError');
 
-    // API Configuration
-    const API_BASE_URL = 'http://localhost:5000/api'; // Change this to your backend URL
+    // Sample data for updates
+    const updatesData = [
+        {
+            id: 1,
+            type: 'announcement',
+            title: 'Latest Announcements',
+            date: '2025-01-05',
+            image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+            description: 'College will reopen on January 15, 2025. All students are expected to attend classes regularly.'
+        },
+        {
+            id: 2,
+            type: 'event',
+            title: 'Annual Sports Gala 2025',
+            date: '2025-02-01',
+            image: 'https://images.unsplash.com/photo-1549060279-7e168fce7090?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+            description: 'Join us for our annual sports gala featuring various competitions and activities.'
+        },
+        {
+            id: 4,
+            type: 'holiday',
+            title: 'Holiday Schedule',
+            date: '2025-03-25',
+            image: 'https://images.unsplash.com/photo-1516450360452-9312f5f86f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+            description: 'College will remain closed for Eid-ul-Fitr holidays from March 28 to April 5, 2025.'
+        }
+    ];
 
-    // Current filters
-    let currentFilters = {
-        testType: 'all',
-        program: 'all',
-        part: 'all'
-    };
-
-    // Admin authentication state
-    let isAdminAuthenticated = false;
-
-    // Results data - will be fetched from backend
-    let resultsData = [];
+    // Sample data for results
+    const resultsData = [
+        {
+            id: 1,
+            type: 'weekly',
+            program: 'ics',
+            part: 'part1',
+            title: 'ICS Part 1 Weekly Test Results',
+            date: '2025-01-15',
+            image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
+        },
+        {
+            id: 2,
+            type: 'monthly',
+            program: 'ics',
+            part: 'part2',
+            title: 'ICS Part 2 Monthly Test Results',
+            date: '2025-01-20',
+            image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
+        },
+        {
+            id: 3,
+            type: 'weekly',
+            program: 'fsc-premed',
+            part: 'part1',
+            title: 'FSc Pre-Medical Part 1 Weekly Test Results',
+            date: '2025-01-18',
+            image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
+        },
+        {
+            id: 4,
+            type: 'monthly',
+            program: 'fsc-premed',
+            part: 'part2',
+            title: 'FSc Pre-Medical Part 2 Monthly Test Results',
+            date: '2025-01-25',
+            image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
+        },
+        {
+            id: 5,
+            type: 'weekly',
+            program: 'fa',
+            part: 'part1',
+            title: 'FA Part 1 Weekly Test Results',
+            date: '2025-01-16',
+            image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
+        },
+        {
+            id: 6,
+            type: 'monthly',
+            program: 'fa',
+            part: 'part2',
+            title: 'FA Part 2 Monthly Test Results',
+            date: '2025-01-22',
+            image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
+        }
+    ];
 
     // Initialize the page
-    async function init() {
-        await loadResultsFromBackend();
+    function init() {
+        displayUpdates();
+        displayResults();
         setupEventListeners();
     }
 
-    // Load results from backend
-    async function loadResultsFromBackend() {
-        try {
-            showLoadingState();
-            const response = await fetch(`${API_BASE_URL}/results`);
-            if (response.ok) {
-                resultsData = await response.json();
-                displayResults(resultsData);
-            } else {
-                throw new Error('Failed to fetch results');
-            }
-        } catch (error) {
-            console.error('Error loading results:', error);
-            showAlert('Error loading results from server', 'error');
-            // Fallback to localStorage if backend is not available
-            loadResultsFromStorage();
-        }
-    }
+    // Display updates
+    function displayUpdates() {
+        updatesContainer.innerHTML = '';
 
-    // Load results from localStorage (fallback)
-    function loadResultsFromStorage() {
-        const savedResults = localStorage.getItem('starCollegeResults');
-        if (savedResults) {
-            try {
-                resultsData = JSON.parse(savedResults);
-                displayResults(resultsData);
-                showAlert('Using offline data. Backend connection failed.', 'warning');
-            } catch (e) {
-                console.error('Error loading results from storage:', e);
-            }
-        }
-    }
-
-    // Show loading state
-    function showLoadingState() {
-        resultsContainer.innerHTML = `
-            <div class="no-results">
-                <i class="fas fa-spinner fa-spin"></i>
-                <h3>Loading results...</h3>
-                <p>Please wait while we fetch the latest results</p>
-            </div>
-        `;
-    }
-
-    // Display results based on current filters
-    function displayResults(results) {
-        // Filter results based on current filters
-        const filteredResults = results.filter(result => {
-            return (
-                (currentFilters.testType === 'all' || result.testType === currentFilters.testType) &&
-                (currentFilters.program === 'all' || result.program === currentFilters.program) &&
-                (currentFilters.part === 'all' || result.part === currentFilters.part)
-            );
-        });
-
-        // Clear container
-        resultsContainer.innerHTML = '';
-
-        // Display filtered results or no results message
-        if (filteredResults.length === 0) {
-            resultsContainer.innerHTML = `
-                <div class="no-results">
-                    <i class="fas fa-chart-bar"></i>
-                    <h3>No results found</h3>
-                    <p>Try adjusting your filters or upload new results</p>
+        if (updatesData.length === 0) {
+            updatesContainer.innerHTML = `
+                <div class="no-content">
+                    <i class="fas fa-newspaper"></i>
+                    <h3>No updates available</h3>
+                    <p>Check back later for the latest college updates</p>
                 </div>
             `;
         } else {
-            filteredResults.forEach(result => {
+            updatesData.forEach(update => {
+                const updateCard = createUpdateCard(update);
+                updatesContainer.appendChild(updateCard);
+            });
+        }
+    }
+
+    // Display results
+    function displayResults() {
+        resultsContainer.innerHTML = '';
+
+        if (resultsData.length === 0) {
+            resultsContainer.innerHTML = `
+                <div class="no-content">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>No results available</h3>
+                    <p>Results will appear here once published</p>
+                </div>
+            `;
+        } else {
+            resultsData.forEach(result => {
                 const resultCard = createResultCard(result);
                 resultsContainer.appendChild(resultCard);
             });
         }
+    }
+
+    // Create an update card element
+    function createUpdateCard(update) {
+        const card = document.createElement('div');
+        card.className = 'update-card';
+        
+        card.innerHTML = `
+            <img src="${update.image}" alt="${update.title}" class="update-image">
+            <div class="update-info">
+                <div class="update-meta">
+                    <span class="update-type">${getUpdateTypeName(update.type)}</span>
+                    <span class="update-date">${formatDate(update.date)}</span>
+                </div>
+                <h3 class="update-title">${update.title}</h3>
+                <p class="update-desc">${update.description}</p>
+            </div>
+        `;
+        
+        // Add click event to open image in modal
+        card.querySelector('.update-image').addEventListener('click', () => {
+            modalImage.src = update.image;
+            modal.style.display = 'flex';
+        });
+        
+        return card;
     }
 
     // Create a result card element
@@ -1030,19 +804,11 @@
         const card = document.createElement('div');
         card.className = 'result-card';
         
-        // Handle both backend and localStorage image formats
-        const imageSrc = result.image.startsWith('http') || result.image.startsWith('/') 
-            ? `${API_BASE_URL}${result.image}`
-            : result.image;
-            
         card.innerHTML = `
-            <img src="${imageSrc}" alt="${result.title}" class="result-image">
-            ${isAdminAuthenticated ? `<button class="delete-btn" data-id="${result._id || result.id}">
-                <i class="fas fa-times"></i>
-            </button>` : ''}
+            <img src="${result.image}" alt="${result.title}" class="result-image">
             <div class="result-info">
                 <div class="result-meta">
-                    <span class="result-type">${result.testType.charAt(0).toUpperCase() + result.testType.slice(1)} Test</span>
+                    <span class="result-type">${result.type.charAt(0).toUpperCase() + result.type.slice(1)} Test</span>
                     <span class="result-date">${formatDate(result.date)}</span>
                 </div>
                 <h3 class="result-title">${result.title}</h3>
@@ -1052,54 +818,24 @@
         
         // Add click event to open image in modal
         card.querySelector('.result-image').addEventListener('click', () => {
-            modalImage.src = imageSrc;
+            modalImage.src = result.image;
             modal.style.display = 'flex';
         });
-        
-        // Add delete functionality if admin is authenticated
-        if (isAdminAuthenticated) {
-            card.querySelector('.delete-btn').addEventListener('click', (e) => {
-                e.stopPropagation();
-                deleteResult(result._id || result.id);
-            });
-        }
         
         return card;
     }
 
-    // Delete a result
-    async function deleteResult(id) {
-        if (confirm('Are you sure you want to delete this result?')) {
-            try {
-                const response = await fetch(`${API_BASE_URL}/results/${id}`, {
-                    method: 'DELETE'
-                });
-                
-                if (response.ok) {
-                    resultsData = resultsData.filter(result => (result._id || result.id) !== id);
-                    displayResults(resultsData);
-                    showAlert('Result deleted successfully');
-                    updateAdminStats();
-                } else {
-                    throw new Error('Failed to delete result');
-                }
-            } catch (error) {
-                console.error('Error deleting result:', error);
-                // Fallback to localStorage
-                resultsData = resultsData.filter(result => (result._id || result.id) !== id);
-                localStorage.setItem('starCollegeResults', JSON.stringify(resultsData));
-                displayResults(resultsData);
-                showAlert('Result deleted from local storage (backend unavailable)', 'warning');
-                updateAdminStats();
-            }
-        }
-    }
-
-    // Format date for display
-    function formatDate(dateString) {
-        const date = new Date(dateString);
-        const options = { year: 'numeric', month: 'short', day: 'numeric' };
-        return date.toLocaleDateString(undefined, options);
+    // Get update type display name
+    function getUpdateTypeName(type) {
+        const typeNames = {
+            'announcement': 'Announcement',
+            'event': 'Event',
+            'news': 'News',
+            'holiday': 'Holiday',
+            'academic': 'Academic',
+            'achievement': 'Achievement'
+        };
+        return typeNames[type] || type;
     }
 
     // Get program display name
@@ -1113,284 +849,30 @@
         return programNames[program] || program;
     }
 
-    // Show alert message
-    function showAlert(message, type = 'success') {
-        adminStatus.textContent = message;
-        adminStatus.className = `alert alert-${type}`;
-        adminStatus.style.display = 'flex';
-        
-        setTimeout(() => {
-            adminStatus.style.display = 'none';
-        }, 3000);
-    }
-
-    // Update admin statistics
-    async function updateAdminStats() {
-        try {
-            const response = await fetch(`${API_BASE_URL}/results/stats/summary`);
-            if (response.ok) {
-                const stats = await response.json();
-                
-                // Update total results
-                totalResults.textContent = stats.totalResults;
-                
-                // Calculate storage used (approximate)
-                const dataSize = JSON.stringify(resultsData).length;
-                const sizeInKB = Math.round(dataSize / 1024);
-                storageUsed.textContent = `${sizeInKB} KB`;
-                
-                // Update program stats
-                updateProgramStats(stats.programStats);
-                
-                // Update test type stats
-                updateTestTypeStats(stats.testTypeStats);
-            } else {
-                throw new Error('Failed to fetch statistics');
-            }
-        } catch (error) {
-            console.error('Error fetching stats:', error);
-            // Fallback to local calculation
-            updateAdminStatsLocal();
-        }
-    }
-
-    // Update admin statistics locally (fallback)
-    function updateAdminStatsLocal() {
-        // Update total results
-        totalResults.textContent = resultsData.length;
-        
-        // Calculate storage used
-        const dataSize = JSON.stringify(resultsData).length;
-        const sizeInKB = Math.round(dataSize / 1024);
-        storageUsed.textContent = `${sizeInKB} KB`;
-        
-        // Update program stats
-        updateProgramStatsLocal();
-        
-        // Update test type stats
-        updateTestTypeStatsLocal();
-    }
-
-    // Update program statistics from backend data
-    function updateProgramStats(programStatsData) {
-        let statsHTML = '';
-        programStatsData.forEach(stat => {
-            statsHTML += `
-                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                    <span>${getProgramName(stat._id)}</span>
-                    <span style="font-weight: 600;">${stat.count}</span>
-                </div>
-            `;
-        });
-        
-        programStats.innerHTML = statsHTML || '<p>No data available</p>';
-    }
-
-    // Update test type statistics from backend data
-    function updateTestTypeStats(testTypeStatsData) {
-        let statsHTML = '';
-        testTypeStatsData.forEach(stat => {
-            statsHTML += `
-                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                    <span>${stat._id.charAt(0).toUpperCase() + stat._id.slice(1)} Tests</span>
-                    <span style="font-weight: 600;">${stat.count}</span>
-                </div>
-            `;
-        });
-        
-        testTypeStats.innerHTML = statsHTML || '<p>No data available</p>';
-    }
-
-    // Update program statistics locally (fallback)
-    function updateProgramStatsLocal() {
-        const programCounts = {};
-        resultsData.forEach(result => {
-            programCounts[result.program] = (programCounts[result.program] || 0) + 1;
-        });
-        
-        let statsHTML = '';
-        for (const [program, count] of Object.entries(programCounts)) {
-            statsHTML += `
-                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                    <span>${getProgramName(program)}</span>
-                    <span style="font-weight: 600;">${count}</span>
-                </div>
-            `;
-        }
-        
-        programStats.innerHTML = statsHTML || '<p>No data available</p>';
-    }
-
-    // Update test type statistics locally (fallback)
-    function updateTestTypeStatsLocal() {
-        const testTypeCounts = {};
-        resultsData.forEach(result => {
-            testTypeCounts[result.testType] = (testTypeCounts[result.testType] || 0) + 1;
-        });
-        
-        let statsHTML = '';
-        for (const [testType, count] of Object.entries(testTypeCounts)) {
-            statsHTML += `
-                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                    <span>${testType.charAt(0).toUpperCase() + testType.slice(1)} Tests</span>
-                    <span style="font-weight: 600;">${count}</span>
-                </div>
-            `;
-        }
-        
-        testTypeStats.innerHTML = statsHTML || '<p>No data available</p>';
-    }
-
-    // Authenticate admin
-    function authenticateAdmin() {
-        const password = passwordInput.value;
-        if (password === 'ranakashan10') {
-            isAdminAuthenticated = true;
-            passwordModal.style.display = 'none';
-            adminPanel.style.display = 'block';
-            passwordInput.value = '';
-            passwordError.style.display = 'none';
-            // Refresh display to show delete buttons
-            displayResults(resultsData);
-        } else {
-            passwordError.style.display = 'block';
-            passwordInput.value = '';
-        }
+    // Format date for display
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+        return date.toLocaleDateString(undefined, options);
     }
 
     // Setup event listeners
     function setupEventListeners() {
-        // Filter buttons
-        filterBtns.forEach(btn => {
+        // Category buttons
+        categoryBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Remove active class from all buttons in the same group
-                const group = btn.parentElement;
-                group.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                
+                // Remove active class from all buttons
+                categoryBtns.forEach(b => b.classList.remove('active'));
                 // Add active class to clicked button
                 btn.classList.add('active');
                 
-                // Update current filters
-                if (btn.dataset.filter) {
-                    currentFilters.testType = btn.dataset.filter;
-                } else if (btn.dataset.program) {
-                    currentFilters.program = btn.dataset.program;
-                } else if (btn.dataset.part) {
-                    currentFilters.part = btn.dataset.part;
-                }
+                // Hide all content sections
+                contentSections.forEach(section => section.classList.remove('active'));
                 
-                // Refresh results display
-                displayResults(resultsData);
+                // Show corresponding section
+                const category = btn.dataset.category;
+                document.getElementById(`${category}Section`).classList.add('active');
             });
-        });
-        
-        // Upload form
-        uploadForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            if (!isAdminAuthenticated) {
-                showAlert('Please authenticate first', 'error');
-                return;
-            }
-            
-            // Disable submit button to prevent multiple submissions
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading...';
-            
-            // Get form values
-            const testType = document.getElementById('testType').value;
-            const program = document.getElementById('program').value;
-            const part = document.getElementById('part').value;
-            const title = document.getElementById('resultTitle').value;
-            const date = document.getElementById('resultDate').value;
-            const imageFile = document.getElementById('resultImage').files[0];
-            
-            // Validate file size (max 5MB)
-            if (imageFile && imageFile.size > 5 * 1024 * 1024) {
-                showAlert('Image size must be less than 5MB', 'error');
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-upload"></i> Upload Result';
-                return;
-            }
-            
-            // Create FormData for file upload
-            const formData = new FormData();
-            formData.append('testType', testType);
-            formData.append('program', program);
-            formData.append('part', part);
-            formData.append('title', title);
-            formData.append('date', date);
-            formData.append('image', imageFile);
-            
-            try {
-                const response = await fetch(`${API_BASE_URL}/results`, {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                if (response.ok) {
-                    const newResult = await response.json();
-                    
-                    // Add to results data
-                    resultsData.push(newResult);
-                    
-                    // Refresh display
-                    displayResults(resultsData);
-                    
-                    // Reset form
-                    uploadForm.reset();
-                    imagePreview.style.display = 'none';
-                    
-                    // Show success message
-                    showAlert('Result uploaded successfully!');
-                    
-                    // Update admin stats
-                    updateAdminStats();
-                } else {
-                    throw new Error('Failed to upload result');
-                }
-            } catch (error) {
-                console.error('Error uploading result:', error);
-                // Fallback to localStorage
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const newResult = {
-                        id: Date.now(),
-                        testType,
-                        program,
-                        part,
-                        title,
-                        date,
-                        image: e.target.result
-                    };
-                    
-                    resultsData.push(newResult);
-                    localStorage.setItem('starCollegeResults', JSON.stringify(resultsData));
-                    displayResults(resultsData);
-                    uploadForm.reset();
-                    imagePreview.style.display = 'none';
-                    showAlert('Result saved to local storage (backend unavailable)', 'warning');
-                    updateAdminStatsLocal();
-                };
-                reader.readAsDataURL(imageFile);
-            } finally {
-                // Re-enable submit button
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-upload"></i> Upload Result';
-            }
-        });
-        
-        // Image preview
-        document.getElementById('resultImage').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    imagePreview.src = e.target.result;
-                    imagePreview.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            }
         });
         
         // Modal close
@@ -1404,135 +886,6 @@
                 modal.style.display = 'none';
             }
         });
-        
-        // Admin panel toggle
-        adminToggle.addEventListener('click', () => {
-            if (isAdminAuthenticated) {
-                if (adminPanel.style.display === 'block') {
-                    adminPanel.style.display = 'none';
-                } else {
-                    adminPanel.style.display = 'block';
-                    updateAdminStats();
-                }
-            } else {
-                passwordModal.style.display = 'flex';
-                passwordInput.focus();
-            }
-        });
-        
-        // Close admin panel when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!adminPanel.contains(e.target) && e.target !== adminToggle && isAdminAuthenticated) {
-                adminPanel.style.display = 'none';
-            }
-        });
-        
-        // Admin tabs
-        adminTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remove active class from all tabs
-                adminTabs.forEach(t => t.classList.remove('active'));
-                tabContents.forEach(t => t.classList.remove('active'));
-                
-                // Add active class to clicked tab
-                tab.classList.add('active');
-                
-                // Show corresponding content
-                const tabId = tab.dataset.tab + 'Tab';
-                document.getElementById(tabId).classList.add('active');
-                
-                // Update stats when manage tab is opened
-                if (tab.dataset.tab === 'manage' || tab.dataset.tab === 'stats') {
-                    updateAdminStats();
-                }
-            });
-        });
-        
-        // Export data
-        exportBtn.addEventListener('click', () => {
-            if (!isAdminAuthenticated) {
-                showAlert('Please authenticate first', 'error');
-                return;
-            }
-            
-            if (resultsData.length === 0) {
-                showAlert('No data to export', 'error');
-                return;
-            }
-            
-            const dataStr = JSON.stringify(resultsData, null, 2);
-            const dataBlob = new Blob([dataStr], {type: 'application/json'});
-            
-            const url = URL.createObjectURL(dataBlob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = `star-college-results-${new Date().toISOString().split('T')[0]}.json`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-            
-            showAlert('Data exported successfully');
-        });
-        
-        // Clear all data
-        clearAllBtn.addEventListener('click', async () => {
-            if (!isAdminAuthenticated) {
-                showAlert('Please authenticate first', 'error');
-                return;
-            }
-            
-            if (resultsData.length === 0) {
-                showAlert('No data to clear', 'error');
-                return;
-            }
-            
-            if (confirm('Are you sure you want to delete ALL results? This action cannot be undone.')) {
-                try {
-                    // Try to clear from backend first
-                    for (const result of resultsData) {
-                        if (result._id) {
-                            await fetch(`${API_BASE_URL}/results/${result._id}`, {
-                                method: 'DELETE'
-                            });
-                        }
-                    }
-                    
-                    // Clear local data
-                    resultsData = [];
-                    localStorage.removeItem('starCollegeResults');
-                    displayResults(resultsData);
-                    showAlert('All results deleted');
-                    updateAdminStats();
-                } catch (error) {
-                    console.error('Error deleting all results:', error);
-                    // Fallback to localStorage only
-                    resultsData = [];
-                    localStorage.removeItem('starCollegeResults');
-                    displayResults(resultsData);
-                    showAlert('All results deleted from local storage', 'warning');
-                    updateAdminStatsLocal();
-                }
-            }
-        });
-        
-        // Password authentication
-        passwordSubmit.addEventListener('click', authenticateAdmin);
-        
-        passwordInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                authenticateAdmin();
-            }
-        });
-        
-        // Close password modal when clicking outside
-        passwordModal.addEventListener('click', (e) => {
-            if (e.target === passwordModal) {
-                passwordModal.style.display = 'none';
-                passwordError.style.display = 'none';
-                passwordInput.value = '';
-            }
-        });
     }
 
     // Initialize the page when DOM is loaded
@@ -1540,4 +893,3 @@
 </script>
 </body>
 </html>
-
